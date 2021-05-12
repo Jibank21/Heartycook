@@ -10,7 +10,7 @@ $msg="";
 
 	if(isset($register))
      {
-	$sql=mysqli_query($con,"select * from cook where cust_email='$email'");
+	$sql=mysqli_query($con,"SELECT * from cook where cust_email='$email'");
     if(mysqli_num_rows($sql))
 	{
 	  $email_error="This Email Id is laready registered with us";
@@ -18,7 +18,7 @@ $msg="";
 	else
 	{
 	$image=$_FILES['image']['name'];
-	$sql=mysqli_query($con,"insert into cook 
+	$sql=mysqli_query($con,"INSERT into cook 
 	(cust_name	,cust_email,fld_password,fld_mob,fld_phone,fld_address,pro_image,email_varification)
        	values('$name','$email','$pswd','$mob','$phone','$address','$image',0)");
 	

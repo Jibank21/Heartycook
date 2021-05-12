@@ -7,7 +7,7 @@ if(isset($_SESSION['id']))
 if(!empty($_GET['food_id']))
 {
 	$food_id=$_GET['food_id'];
-	$query=mysqli_query($con,"select * from food   where food_id='$food_id'");
+	$query=mysqli_query($con,"SELECT * from food   where food_id='$food_id'");
 if(mysqli_num_rows($query))
 {   
 	 $row=mysqli_fetch_array($query);
@@ -54,7 +54,7 @@ if(isset($update))
 			
 	       {
 		          $paymentmode=implode(",",$chk);
-	              if(mysqli_query($con,"update  food  set foodname='$food_name',cost='$cost',cuisines='$cuisines',paymentmode='$paymentmode' where food_id='$food_id'"))
+	              if(mysqli_query($con,"UPDATE  food  set foodname='$food_name',cost='$cost',cuisines='$cuisines',paymentmode='$paymentmode' where food_id='$food_id'"))
 	   
 	                {
 						header("location:update_food.php?food_id=$food_id");
@@ -76,7 +76,7 @@ if(isset($update))
 			     echo $cuisines."<br>";
 			     echo $paymentmode."<br>";
 			     echo $img_name."<br>";
-	             if(mysqli_query($con,"update  food  set foodname='$food_name',cost='$cost',cuisines='$cuisines',paymentmode='$paymentmode', fldimage='$img_name' where food_id='$food_id'"))
+	             if(mysqli_query($con,"UPDATE  food  set foodname='$food_name',cost='$cost',cuisines='$cuisines',paymentmode='$paymentmode', fldimage='$img_name' where food_id='$food_id'"))
 	
 	                {
 		             echo "update with new pic";
@@ -147,9 +147,7 @@ if(isset($logout))
 	
       <ul class="navbar-nav ml-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="index.php">Home
-                
-              </a>
+          <a class="nav-link" href="index.php">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="aboutus.php">About</a>
