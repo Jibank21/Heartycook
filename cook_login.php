@@ -8,7 +8,7 @@ if(isset($_SESSION['id']))
 }
   if(isset($login))
   {
-	$sql=mysqli_query($con,"select * from cook where cust_email='$username' && fld_password='$pswd' ");
+	$sql=mysqli_query($con,"SELECT * from cook where cust_email='$username' && fld_password='$pswd' ");
     if(mysqli_num_rows($sql))
 	{
 	 $_SESSION['id']=$username;
@@ -32,9 +32,9 @@ if(isset($_SESSION['id']))
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 		
 		<style>
-	
-		ul li a {color:white;padding:40px; }
-		ul li a:hover {color:white;}
+      ul li {list-style: none;}
+      ul li a {color:white;padding:40px; }
+      ul li a:hover {color:white;}
 		</style>
 </head>
 <body>
@@ -49,9 +49,7 @@ if(isset($_SESSION['id']))
 	
       <ul class="navbar-nav ml-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="index.php">Home
-                
-              </a>
+          <a class="nav-link" href="index.php">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="aboutus.php">About</a>
@@ -87,7 +85,7 @@ if(isset($_SESSION['id']))
 			  <form action="" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                            <label for="username">Username:</label>
-                           <input type="text" class="form-control" id="username" placeholder="Enter Username" name="username" required/>
+                           <input type="email" class="form-control" id="username" placeholder="Enter email address" name="username" required/>
                         </div>
                         <div class="form-group">
                              <label for="pwd">Password:</label>

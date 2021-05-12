@@ -7,7 +7,7 @@ $arr=array();
 if(isset($_SESSION['cust_id']))
 {
 	 $cust_id=$_SESSION['cust_id'];
-	 $qq=mysqli_query($con,"select * from customer where cust_email='$cust_id'");
+	 $qq=mysqli_query($con,"SELECT * from customer where cust_email='$cust_id'");
 	 $qqr= mysqli_fetch_array($qq);
 }
 else
@@ -15,7 +15,7 @@ else
 	$cust_id="";
 }
  
-$query=mysqli_query($con,"select  cook.cust_name,cook.cook_id,cook.cust_email,
+$query=mysqli_query($con,"SELECT  cook.cust_name,cook.cook_id,cook.cust_email,
 cook.fld_mob,cook.fld_address,cook.pro_image,food.food_id,food.foodname,food.cost,
 food.cuisines,food.paymentmode 
 from cook inner join food on cook.cook_id=food.cook_id;");
@@ -57,7 +57,7 @@ while($row=mysqli_fetch_array($query))
 	 echo $msgtxt;
 	 echo $email;
 	 echo $phone;
-	 if(mysqli_query($con,"insert into message(cust_name,cust_email,fld_phone,fld_msg) values ('$name','$email','$phone','$msgtxt')"))
+	 if(mysqli_query($con,"INSERT into message(cust_name,cust_email,fld_phone,fld_msg) values ('$name','$email','$phone','$msgtxt')"))
      {
 		 echo "<script> alert('We will be Connecting You shortly')</script>";
 	 }
@@ -65,7 +65,7 @@ while($row=mysqli_fetch_array($query))
 	 {
 		 echo "failed";
 	 }
-}$query=mysqli_query($con,"select food.foodname,food.cook_id,food.cost,food.cuisines,food.fldimage,cart.cart_id,cart.product_id,cart.customer_id from food inner  join cart on food.food_id=cart.product_id where cart.customer_id='$cust_id'");
+}$query=mysqli_query($con,"SELECT food.foodname,food.cook_id,food.cost,food.cuisines,food.fldimage,cart.cart_id,cart.product_id,cart.customer_id from food inner  join cart on food.food_id=cart.product_id where cart.customer_id='$cust_id'");
   $re=mysqli_num_rows($query);
 ?>
 <html>
@@ -157,9 +157,7 @@ ul li a:hover{text-decoration:none;}
 	
       <ul class="navbar-nav ml-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="index.php">Home
-                
-              </a>
+          <a class="nav-link" href="index.php">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="aboutus.php">About</a>
@@ -185,7 +183,7 @@ ul li a:hover{text-decoration:none;}
 			else
 			{
 			?>
-			<a href="form/cart.php"><span style=" color:green; font-size:30px;"><i class="fa fa-shopping-cart" aria-hidden="true"><span style="color:green;" id="cart"  class="badge badge-light"><?php if(isset($re)) { echo $re; }?></span></i></span></a>
+			<a href="customer/cart.php"><span style=" color:green; font-size:30px;"><i class="fa fa-shopping-cart" aria-hidden="true"><span style="color:green;" id="cart"  class="badge badge-light"><?php if(isset($re)) { echo $re; }?></span></i></span></a>
 			<button class="btn btn-outline-success my-2 my-sm-0" name="logout" type="submit">Log Out</button>&nbsp;&nbsp;&nbsp;
 			<?php
 			}

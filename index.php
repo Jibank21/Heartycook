@@ -16,7 +16,7 @@ else
 if(isset($_SESSION['cust_id']))
 {
 	 $cust_id=$_SESSION['cust_id'];
-	 $cquery=mysqli_query($con,"select * from customer where cust_email='$cust_id'");
+	 $cquery=mysqli_query($con,"SELECT * from customer where cust_email='$cust_id'");
 	 $cresult=mysqli_fetch_array($cquery);
 }
 else
@@ -29,7 +29,7 @@ else
 
 
 
-$query=mysqli_query($con,"select  cook.cust_name,cook.cook_id,cook.cust_email,
+$query=mysqli_query($con,"SELECT  cook.cust_name,cook.cook_id,cook.cust_email,
 cook.fld_mob,cook.fld_address,cook.pro_image,food.food_id,food.foodname,food.cost,
 food.cuisines,food.paymentmode 
 from cook inner join food on cook.cook_id=food.cook_id;");
@@ -64,12 +64,12 @@ while($row=mysqli_fetch_array($query))
 	 session_destroy();
 	 header("location:index.php");
  }
- $query=mysqli_query($con,"select food.foodname,food.cook_id,food.cost,food.cuisines,food.fldimage,cart.cart_id,cart.product_id,cart.customer_id from food inner  join cart on food.food_id=cart.product_id where cart.customer_id='$cust_id'");
+ $query=mysqli_query($con,"SELECT food.foodname,food.cook_id,food.cost,food.cuisines,food.fldimage,cart.cart_id,cart.product_id,cart.customer_id from food inner  join cart on food.food_id=cart.product_id where cart.customer_id='$cust_id'");
   $re=mysqli_num_rows($query);
 if(isset($message))
  {
 	 
-	 if(mysqli_query($con,"insert into message(cust_name,cust_email,fld_phone,fld_msg) values ('$nm','$em','$ph','$txt')"))
+	 if(mysqli_query($con,"INSERT into message(cust_name,cust_email,fld_phone,fld_msg) values ('$nm','$em','$ph','$txt')"))
      {
 		 echo "<script> alert('We will be Connecting You shortly')</script>";
 	 }
@@ -133,7 +133,7 @@ if(isset($message))
 	                              });
 	                            });
 								
-								//hotel search
+								//searching by cook
 								$(document).ready(function(){
 	
 	                            $("#search_cook").keypress(function()
@@ -147,7 +147,7 @@ if(isset($message))
 			                    data:{query:query},
 			                    success:function(data)
 			                                 {
-				                               $('#resulthotel').html(data);
+				                               $('#resultcook').html(data);
 			                                  }
 		                                });
 	                             }
@@ -190,7 +190,7 @@ ul li a:hover{text-decoration:none;}
 
 
 <div id="result" style="position:fixed;top:300; right:500;z-index: 3000;width:350px;background:white;"></div>
-<div id="resulthotel" style=" margin:0px auto; position:fixed; top:150px;right:750px; background:white;  z-index: 3000;"></div>
+<div id="resultcook" style=" margin:0px auto; position:fixed; top:150px;right:750px; background:white;  z-index: 3000;"></div>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
   
@@ -217,9 +217,7 @@ ul li a:hover{text-decoration:none;}
 		     <a href="#" class="nav-link"><form method="post"><input type="text" name="search_text" id="search_text" placeholder="Search by Food Name " class="form-control " /></form></a>
 		  </li>
 		  <li class="nav-item active">
-          <a class="nav-link" href="index.php">Home
-                
-              </a>
+          <a class="nav-link" href="index.php">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="aboutus.php">About</a>
@@ -328,19 +326,19 @@ ul li a:hover{text-decoration:none;}
 	<div class="container-fluid rounded" style="border:solid 1px #F0F0F0;">
 	<?php
 	   $food_id=$arr[0];
-	  $query=mysqli_query($con,"select cook.cust_email,cook.cust_name,cook.fld_mob,
+	  $query=mysqli_query($con,"SELECT cook.cust_email,cook.cust_name,cook.fld_mob,
 	  cook.fld_phone,cook.fld_address,cook.cook_id,cook.pro_image,food.food_id,food.foodname,food.cost,
 	  food.cuisines,food.paymentmode,food.fldimage from cook inner join
 	  food on cook.cook_id=food.cook_id where food.food_id='$food_id'");
 	  while($res=mysqli_fetch_assoc($query))
 	  {
-		   $hotel_logo= "image/cook/".$res['cust_email']."/".$res['pro_image'];
+		   $cook_logo= "image/cook/".$res['cust_email']."/".$res['pro_image'];
 		   $food_pic= "image/cook/".$res['cust_email']."/foodimages/".$res['fldimage'];
 	  ?>
 	  <div class="container-fluid">
 	  <div class="container-fluid">
 	     <div class="row" style="padding:10px; ">
-		      <div class="col-sm-2"><img src="<?php echo $hotel_logo; ?>" class="rounded-circle" height="50px" width="50px" alt="Cinque Terre"></div>
+		      <div class="col-sm-2"><img src="<?php echo $cook_logo; ?>" class="rounded-circle" height="50px" width="50px" alt="Cinque Terre"></div>
 		      <div class="col-sm-5">
 		                     <a href="search.php?cook_id=<?php echo $res['cook_id']; ?>"><span style="font-family: 'Miriam Libre', sans-serif; font-size:28px;color:#CB202D;">
 		 <?php echo $res['cust_name']; ?></span></a>
@@ -404,23 +402,23 @@ ul li a:hover{text-decoration:none;}
 	            <div class="container-fluid rounded" style="border:solid 1px #F0F0F0;"><!--product container-->
 	                  <?php
 	                        $food_id=$arr[1];
-	                        $query=mysqli_query($con,"select cook.cust_email,cook.cust_name,cook.fld_mob,
+	                        $query=mysqli_query($con,"SELECT cook.cust_email,cook.cust_name,cook.fld_mob,
 	                        cook.fld_phone,cook.fld_address,cook.pro_image,food.food_id,food.foodname,food.cost,
 	                        food.cuisines,food.paymentmode,food.fldimage from cook inner join
 	                        food on cook.cook_id=food.cook_id where food.food_id='$food_id'");
 	                             while($res=mysqli_fetch_assoc($query))
 	                                  {
-		                                 $hotel_logo= "image/cook/".$res['cust_email']."/".$res['pro_image'];
+		                                 $cook_logo= "image/cook/".$res['cust_email']."/".$res['pro_image'];
 		                                 $food_pic= "image/cook/".$res['cust_email']."/foodimages/".$res['fldimage'];
 	                                   ?>
 	                                      <div class="container-fluid">
 	                                          <div class="container-fluid"><!--product row container 1-->
 	                                               <div class="row" style="padding:10px; ">
-		                            <!--hotel logo-->  <div class="col-sm-2"><img src="<?php echo $hotel_logo; ?>" class="rounded-circle" height="50px" width="50px" alt="Cinque Terre"></div>
+		                            <!--cook logo-->  <div class="col-sm-2"><img src="<?php echo $cook_logo; ?>" class="rounded-circle" height="50px" width="50px" alt="Cinque Terre"></div>
 		                                               <div class="col-sm-5">
-		                            <!--hotelname-->        <span style="font-family: 'Miriam Libre', sans-serif; font-size:28px;color:#CB202D;"><?php echo $res['cust_name']; ?></span>
+		                            <!--cookname-->        <span style="font-family: 'Miriam Libre', sans-serif; font-size:28px;color:#CB202D;"><?php echo $res['cust_name']; ?></span>
                                                        </div>
-		                            <!--ruppee-->      <div class="col-sm-3"><i  style="font-size:20px;" class="fas fa-dollar-sign"></i>&nbsp;<span style="color:green; font-size:25px;"><?php echo $res['cost']; ?></span></div>
+		                            <!--dollar-->      <div class="col-sm-3"><i  style="font-size:20px;" class="fas fa-dollar-sign"></i>&nbsp;<span style="color:green; font-size:25px;"><?php echo $res['cost']; ?></span></div>
 									                   <form method="post">
 		                         <!--add to cart-->    <div class="col-sm-2" style="text-align:left;padding:10px; font-size:25px;"><button type="submit"  name="addtocart" value="<?php echo $res['food_id'];?>"><span style="color:green;"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span></button></div>
 		                                               </form>

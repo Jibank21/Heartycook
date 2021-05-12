@@ -5,7 +5,7 @@ extract($_REQUEST);
 if(isset($_SESSION['id']))
 {
  $id=$_SESSION['id'];
- $vq=mysqli_query($con,"select * from cook where cust_email='$id'");
+ $vq=mysqli_query($con,"SELECT * from cook where cust_email='$id'");
  $vr=mysqli_fetch_array($vq);
  $vrid=$vr['cook_id'];
 }
@@ -16,7 +16,7 @@ if(!isset($_SESSION['id']))
 }
 else
 {
-$query=mysqli_query($con,"select * from cook   where cust_email='$id'");
+$query=mysqli_query($con,"SELECT * from cook   where cust_email='$id'");
 if(mysqli_num_rows($query))
 {   if(!file_exists("../image/cook/".$id."/foodimages"))
 	{
@@ -42,7 +42,7 @@ if(isset($add))
     if(!empty($chk)) 
 	{
 	$paymentmode=implode(",",$chk);
-	if(mysqli_query($con,"insert into food(cook_id,foodname,cost,cuisines,paymentmode,fldimage) values
+	if(mysqli_query($con,"INSERT into food(cook_id,foodname,cost,cuisines,paymentmode,fldimage) values
 	
 	('$v_id','$food_name','$cost','$cuisines','$paymentmode','$img_name')"))
 	{
@@ -74,7 +74,7 @@ if(isset($upd_account))
 					//echo $fn;
 					//echo $emm;
 					//echo $add;
-					if(mysqlI_query($con,"update cook set cust_name='$fn',cust_email='$emm',fld_address='$add',fld_mob='$mob',fld_password='$pwsd' where cust_email='$id'"))
+					if(mysqlI_query($con,"UPDATE cook set cust_name='$fn',cust_email='$emm',fld_address='$add',fld_mob='$mob',fld_password='$pwsd' where cust_email='$id'"))
 				   {
 						 header("location:infoUpdate.php");
 					}
@@ -83,12 +83,12 @@ if(isset($upd_account))
 			  {
 				  if(isset($_SESSION['id']))
 				  {
-				  $log_img=mysqli_query($con,"select * from cook where cust_email='$id'");
+				  $log_img=mysqli_query($con,"SELECT * from cook where cust_email='$id'");
                   $log_img_row=mysqli_fetch_array($log_img);
 				  $old_logo=$log_img_row['pro_image'];
 				  $new_img_name=$_FILES['logo_pic']['name'];
 				  
-				  if(mysqli_query($con,"update cook set pro_image='$new_img_name' where cust_email='$id'"))
+				  if(mysqli_query($con,"UPDATE cook set pro_image='$new_img_name' where cust_email='$id'"))
 				  {
 					  unlink("image/cook/$id/$old_logo");
 					  move_uploaded_file($_FILES['logo_pic']['tmp_name'],"image/cook/$id/".$_FILES['logo_pic']['name']);
@@ -122,7 +122,7 @@ if(isset($upd_account))
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 	 <style>
-		
+		ul li {list-style: none;}
 		ul li a {color:white;padding:40px; }
 		ul li a:hover {color:white;}
 	 </style>
@@ -148,9 +148,7 @@ if(isset($upd_account))
 	
       <ul class="navbar-nav ml-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="index.php">Home
-                
-              </a>
+          <a class="nav-link" href="index.php">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="aboutus.php">About</a>
@@ -229,7 +227,7 @@ if(isset($upd_account))
 			 <th>Delete Item   </th>
 			 <th>Update item Details </th>
 			   <?php
-					  if($query=mysqli_query($con,"select cook.cook_id,cook.cust_email,food.food_id,food.foodname,food.cost,food.paymentmode,food.cuisines,food.fldimage,cook.cust_name from cook inner join food on cook.cook_id=food.cook_id where cook.cust_email='$id'"))
+					  if($query=mysqli_query($con,"SELECT cook.cook_id,cook.cust_email,food.food_id,food.foodname,food.cost,food.paymentmode,food.cuisines,food.fldimage,cook.cust_name from cook inner join food on cook.cook_id=food.cook_id where cook.cust_email='$id'"))
 					  {
 						  if(mysqli_num_rows($query))
 						  {

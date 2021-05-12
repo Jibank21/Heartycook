@@ -2,13 +2,13 @@
 session_start();
 include('connection.php');
  $cookid=$_GET['cookid'];
-$re=mysqli_query($con,"select * from food where cook_id='$cookid'");
+$re=mysqli_query($con,"SELECT * from food where cook_id='$cookid'");
 $re_arr=mysqli_fetch_array($re);
 $re_no=mysqli_num_rows($re);
 if($re_no)
 {
 	unset($_SESSION['id']);
-	 $vend_info=mysqli_query($con,"select * from cook where cook_id='$cookid'");
+	 $vend_info=mysqli_query($con,"SELECT * from cook where cook_id='$cookid'");
 	 $vend_row=mysqli_fetch_array($vend_info);
 	  $im=$vend_row['pro_image'];
 	  $em=$vend_row['cust_email'];
@@ -17,19 +17,19 @@ if($re_no)
 	// rmdir("image/cook/$em/foodimages");
 	 unlink("image/cook/$em/$im");
 	 //rmdir("image/cook/$em");
-	 mysqli_query($con,"delete from food where cook_id='$cookid'");
-	 mysqli_query($con,"delete from cook where cook_id='$cookid'");
+	 //mysqli_query($con,"DELETE from food where cook_id='$cookid'");
+	 mysqli_query($con,"DELETE from cook where cook_id='$cookid'");
 	 header( "refresh:5;url=dashboard.php" );
 	 
 }
 else
 {
 	unset($_SESSION['id']);
-	 $vend_info=mysqli_query($con,"select * from cook where cook_id='$cookid'");
+	 $vend_info=mysqli_query($con,"SELECT * from cook where cook_id='$cookid'");
 	 $vend_row=mysqli_fetch_array($vend_info);
 	  $im=$vend_row['pro_image'];
 	  $em=$vend_row['cust_email'];
-	 mysqli_query($con,"delete from cook where cook_id='$cookid'");
+	 mysqli_query($con,"DELETE from cook where cook_id='$cookid'");
 	 unlink("image/cook/$em/$im");
 	 rmdir("image/cook/$em/foodimages");
 	 rmdir("image/cook/$em");
@@ -40,7 +40,7 @@ else
 
 <html>
   <head>
-     <title>Admin control panel</title>
+     <title>Removing cook</title>
 	 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

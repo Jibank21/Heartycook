@@ -4,7 +4,7 @@ include("connection.php");
 extract($_REQUEST);
   if(isset($login))
   {
-	$sql=mysqli_query($con,"select * from admin where admin_username='$username' && fld_password='$pswd' ");
+	$sql=mysqli_query($con,"SELECT * from admin where admin_username='$username' && fld_password='$pswd' ");
     if(mysqli_num_rows($sql))
 	{
 	 $_SESSION['admin']=$username;
