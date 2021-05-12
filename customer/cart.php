@@ -17,7 +17,7 @@ else
  if(isset($_SESSION['cust_id']))
  {
  $cust_id=$_SESSION['cust_id'];
- $qq=mysqli_query($con,"select * from customer where cust_email='$cust_id'");
+ $qq=mysqli_query($con,"SELECT * from customer where cust_email='$cust_id'");
 	 $qqr= mysqli_fetch_array($qq);
  }
 if(empty($cust_id))
@@ -26,7 +26,7 @@ if(empty($cust_id))
 }
 if(!empty($product_id && $cust_id ))
 {
-if(mysqli_query($con,"insert into cart (product_id,customer_id) values ('$product_id','$cust_id') "))
+if(mysqli_query($con,"INSERT into cart (product_id,customer_id) values ('$product_id','$cust_id') "))
 {
 	echo "success";
 	$product_id="";
@@ -41,7 +41,7 @@ if(isset($del))
 {
 	
 	//echo $del;
-	if(mysqli_query($con,"delete from cart where cart_id='$del' && customer_id='$cust_id'"))
+	if(mysqli_query($con,"DELETE from cart where cart_id='$del' && customer_id='$cust_id'"))
 	{
 		header("location:deletecart.php");
 	}
@@ -63,7 +63,7 @@ if(isset($del))
  }
  
  //update section
-  $cust_details=mysqli_query($con,"select * from customer where cust_email='$cust_id'");
+  $cust_details=mysqli_query($con,"SELECT * from customer where cust_email='$cust_id'");
   $det_res=mysqli_fetch_array($cust_details);
   $cust_name=$det_res['cust_name'];
   $cust_email=$det_res['cust_email'];
@@ -72,13 +72,13 @@ if(isset($del))
   if(isset($update))
   {
 	   
-	 if(mysqli_query($con,"update customer set cust_name='$name',cust_phone='$mobile',password='$pswd' where cust_email='$cust_email'"))
+	 if(mysqli_query($con,"UPDATE customer set cust_name='$name',cust_phone='$mobile',password='$pswd' where cust_email='$cust_email'"))
       {
 	   header("location:customerupdate.php");
 	  }
   }
   
-  $query=mysqli_query($con,"select food.foodname,food.cook_id,food.cost,food.cuisines,food.fldimage,cart.cart_id,cart.product_id,cart.customer_id from food inner  join cart on food.food_id=cart.product_id where cart.customer_id='$cust_id'");
+  $query=mysqli_query($con,"SELECT food.foodname,food.cook_id,food.cost,food.cuisines,food.fldimage,cart.cart_id,cart.product_id,cart.customer_id from food inner  join cart on food.food_id=cart.product_id where cart.customer_id='$cust_id'");
   $re=mysqli_num_rows($query);
   
 ?>
@@ -205,14 +205,14 @@ if(isset($del))
                  <table class="table">
                   <tbody>
 	               <?php
-	                  $query=mysqli_query($con,"select food.foodname,food.cook_id,food.cost,food.cuisines,food.fldimage,cart.cart_id,cart.product_id,cart.customer_id from food inner  join cart on food.food_id=cart.product_id where cart.customer_id='$cust_id'");
+	                  $query=mysqli_query($con,"SELECT food.foodname,food.cook_id,food.cost,food.cuisines,food.fldimage,cart.cart_id,cart.product_id,cart.customer_id from food inner  join cart on food.food_id=cart.product_id where cart.customer_id='$cust_id'");
 	                  $re=mysqli_num_rows($query);
 	                   if($re)
 	                    {
 		                 while($res=mysqli_fetch_array($query))
 		                  {
 			                $cook_id=$res['cook_id'];
-			               $v_query=mysqli_query($con,"select * from cook where cook_id='$cook_id'");
+			               $v_query=mysqli_query($con,"SELECT * from cook where cook_id='$cook_id'");
 			               $v_row=mysqli_fetch_array($v_query);
 			               $em=$v_row['cust_email'];
 			               $nm=$v_row['cust_name'];
@@ -315,11 +315,11 @@ if(isset($del))
 				<th>Cancel order</th>
 				    <tbody>
 					<?php
-					$quer_res=mysqli_query($con,"select * from order where cust_email_id='$cust_id' && fldstatus='In Process'");
+					$quer_res=mysqli_query($con,"SELECT * from orders where cust_email_id='$cust_id' && fldstatus='In Process'");
 					while($roww=mysqli_fetch_array($quer_res))
 					{   
 				         $fid=$roww['food_id'];
-				         $qr=mysqli_query($con,"select * from food where food_id='$fid'");
+				         $qr=mysqli_query($con,"SELECT * from food where food_id='$fid'");
 						 $qrr=mysqli_fetch_array($qr);
 						
 					  

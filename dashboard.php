@@ -56,7 +56,7 @@ else
      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">   
 		 <style>
-		ul li{}
+		ul li{list-style:none;}
 		ul li a {color:black;}
 		ul li a:hover {color:black; font-weight:bold;}
 		ul li {list-style:none;}
@@ -101,7 +101,7 @@ ul li a:hover{text-decoration:none;}
 	if(!empty($admin_username))
 	{
 	?>
-	<a class="navbar-brand" style="color:black; text-decoratio:none;"><i class="far fa-user">Admin</i></a>
+	<a class="navbar-brand" style="color:black; text-decoration:none;"><i class="far fa-user">Admin</i></a>
 	<?php
 	}
 	?>
@@ -302,18 +302,18 @@ ul li a:hover{text-decoration:none;}
 			   <th>order Status</th>
 			   <tbody>
 			   <?php			   
-			   $rr=mysqli_query($con,"select * from order");
+			   $rr=mysqli_query($con,"SELECT * from orders");
 			   while($rrr=mysqli_fetch_array($rr))
 			   {
 				   $stat=$rrr['fldstatus'];
 				   $foodid=$rrr['food_id'];
-				   $r_f=mysqli_query($con,"select * from food where food_id='$foodid'");
+				   $r_f=mysqli_query($con,"SELECT * from food where food_id='$foodid'");
 				   $r_ff=mysqli_fetch_array($r_f);
 			   
 			   ?>
 			   <tr>
 			   <td><?php echo $rrr['order_id']; ?></td>
-			   <td><a href="searchfood.php?food_id=<?php echo $rrr['food_id']; ?>"></td>
+			   <td><a href="searchfood.php?food_id=<?php echo $rrr['food_id']; ?>"><?php echo $rrr['food_id']; ?></td>
 			   <td><?php echo $rrr['cust_email_id']; ?></td>
 			   <?php
 			   if($stat=="cancelled" || $stat=="Out Of Stock")

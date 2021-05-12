@@ -383,7 +383,8 @@ if(isset($upd_account))
 				<th>Order Status</th>
 				<th>Update Status</th>
 				<?php
-				$orderquery=mysqli_query($con,"select * from order where cook_id='$vrid'");
+				
+				$orderquery=mysqli_query($con,"SELECT * from orders order by cook_id='$vrid'");
 				if(mysqli_num_rows($orderquery))
 				{
 					while($orderrow=mysqli_fetch_array($orderquery))

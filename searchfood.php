@@ -5,7 +5,7 @@ session_start();
 if(isset($_SESSION['cust_id']))
 {
 	 $cust_id=$_SESSION['cust_id'];
-	 $qq=mysqli_query($con,"select * from customer where cust_email='$cust_id'");
+	 $qq=mysqli_query($con,"SELECT * from customer where cust_email='$cust_id'");
 	 $qqr= mysqli_fetch_array($qq);
 }
 else
@@ -22,7 +22,7 @@ else
 }
 if(isset($login))
  {
-	 header("location:form/index.php");
+	 header("location:customer/index.php");
  }
  if(isset($logout))
  {
@@ -35,15 +35,15 @@ if(isset($addtocart))
 	if(!empty($_SESSION['cust_id']))
 	{
 		 
-		header("location:form/cart.php?product=$addtocart");
+		header("location:customer/cart.php?product=$addtocart");
 	}
 	else
 	{
-		header("location:form/?product=$addtocart");
+		header("location:customer/?product=$addtocart");
 	}
  }
 
-$query=mysqli_query($con,"select food.foodname,food.cook_id,food.cost,food.cuisines,food.fldimage,cart.cart_id,cart.product_id,cart.customer_id from food inner  join cart on food.food_id=cart.product_id where cart.customer_id='$cust_id'");
+$query=mysqli_query($con,"SELECT food.foodname,food.cook_id,food.cost,food.cuisines,food.fldimage,cart.cart_id,cart.product_id,cart.customer_id from food inner  join cart on food.food_id=cart.product_id where cart.customer_id='$cust_id'");
   $re=mysqli_num_rows($query);
 ?>
 <html>
@@ -269,7 +269,7 @@ ul li a:hover{text-decoration:none;}
 		 <span><li><?php echo "$".$res['cost']; ?>&nbsp;for 1</li></span>
 		 <span><li>Up To 60 Minutes</li></span>
 		 </div>
-		 <div class="col-sm-6" style="">
+		 <div class="col-sm-6">
 		 <b><?php echo"(" .$res['foodname'].")"?></b>
 		 </div>
 		 </div>

@@ -6,7 +6,7 @@ if(isset($updstatus))
 {
 	if(!empty($_SESSION['id']))
 {
-	  if(mysqli_query($con,"update order set fldstatus='$status' where order_id='$order_id'"))
+	  if(mysqli_query($con,"UPDATE orders set fldstatus='$status' where order_id='$order_id'"))
 	  {
 		  header("location:food.php");
 	  }
@@ -27,7 +27,7 @@ else
      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	  <!--bootstrap files-->
 	  <style>
-	  ul li{}
+	  ul li{list-style:none;}
 		ul li a {color:black;}
 		ul li a:hover {color:black; font-weight:bold;}
 		ul li {list-style:none;}
