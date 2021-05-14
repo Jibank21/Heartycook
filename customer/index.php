@@ -189,7 +189,7 @@ if(isset($register))
 				   
 				   <div class="form-group">
                       <label for="mobile">Mobile</label>
-                      <input type="tel" id="mobile" class="form-control" name="mobile" pattern="[6-9]{1}[0-9]{2}[0-9]{3}[0-9]{4}" placeholder="" required>
+                      <input type="tel" id="mobile" class="form-control" name="mobile"  placeholder="" required>
                     </div>
  
                   <button type="submit" name="register" style="background:#ED2553; border:1px solid #ED2553;" class="btn btn-primary">Create New Account</button>

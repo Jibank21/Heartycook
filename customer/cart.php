@@ -80,6 +80,8 @@ if(isset($del))
   
   $query=mysqli_query($con,"SELECT food.foodname,food.cook_id,food.cost,food.cuisines,food.fldimage,cart.cart_id,cart.product_id,cart.customer_id from food inner  join cart on food.food_id=cart.product_id where cart.customer_id='$cust_id'");
   $re=mysqli_num_rows($query);
+
+  $sql=mysqli_query($con,"SELECT orders.*,cook.cust_name from orders,cook where orders.cook_id=cook.cook_id order by orders.order_id asc");
   
 ?>
 
@@ -203,7 +205,16 @@ if(isset($del))
 	   
             <div class="tab-pane fade show active" id="viewitem" role="tabpanel" aria-labelledby="home-tab">
                  <table class="table">
+					<tr style="text-align: center;">
+						<th>Image</th>
+						<th>Food</th>
+						<th>Price</th>
+						<th>Cusine</th>
+						<th>Cook</th>
+					</tr>
+				 	
                   <tbody>
+
 	               <?php
 	                  $query=mysqli_query($con,"SELECT food.foodname,food.cook_id,food.cost,food.cuisines,food.fldimage,cart.cart_id,cart.product_id,cart.customer_id from food inner  join cart on food.food_id=cart.product_id where cart.customer_id='$cust_id'");
 	                  $re=mysqli_num_rows($query);
@@ -217,7 +228,7 @@ if(isset($del))
 			               $em=$v_row['cust_email'];
 			               $nm=$v_row['cust_name'];
 	                ?>
-                      <tr>
+                      <tr style="text-align: center;">
                          <td><image src="../image/cook/<?php echo $em."/foodimages/".$res['fldimage'];?>" height="80px" width="100px"></td>
                          <td><?php echo $res['foodname'];?></td>
                          <td><?php echo "$ ".$res['cost'];?></td>
@@ -309,13 +320,14 @@ if(isset($del))
 			 <!--tab 3 starts-->
             <div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
 			    <table class="table">
-				<th>Order Number</th>
+				<th>Order Number</th>			
 				<th>Item Name</th>
 				<th>Price</th>
 				<th>Cancel order</th>
 				    <tbody>
 					<?php
 					$quer_res=mysqli_query($con,"SELECT * from orders where cust_email_id='$cust_id' && fldstatus='In Process'");
+					$i=1;
 					while($roww=mysqli_fetch_array($quer_res))
 					{   
 				         $fid=$roww['food_id'];
@@ -325,7 +337,8 @@ if(isset($del))
 					  
 					?>
 					   <tr>
-					   <td><?php echo $roww['order_id']; ?></td>
+					   <td><?php echo $i //$roww['order_id']; ?></td>
+					   
 					   <?php
 					   if(empty($qrr['foodname']))
 					   {
@@ -339,13 +352,12 @@ if(isset($del))
 						    <td><?php echo $qrr['foodname']; ?></td>
 						   <?php
 					   }
-					   ?>
-					  
+					   ?>	
 					   <td><?php echo $qrr['cost']; ?></td>
 					   <td><a href="#" onclick="del(<?php echo $roww['order_id'];?>);"><button type="button" class="btn btn-danger">Cancel Order</button></a></td>
 					   </tr>
 					 <?php
-					}
+					$i++;}
 					 ?>  
 					</tbody>
 				</table>
