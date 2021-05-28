@@ -313,10 +313,53 @@ ul li a:hover{text-decoration:none;}
     
     <div class="col-sm-6">
 	<div class="container-fluid">
-	 <img src="img/istockphoto-516324258-612x612.jpg" height="300px" width="100%">
-	</div>
-	 <div class="container">
-	 <p style="font-family: 'Lobster', cursive; font-weight:light;  font-size:25px;"></p>
+	<?php
+	                        $food_id=$arr[1];
+	                        $query=mysqli_query($con,"SELECT cook.cust_email,cook.cust_name,cook.fld_mob,
+	                        cook.fld_phone,cook.fld_address,cook.pro_image,food.food_id,food.foodname,food.cost,
+	                        food.cuisines,food.paymentmode,food.fldimage from cook inner join
+	                        food on cook.cook_id=food.cook_id where food.food_id='$food_id'");
+	                             while($res=mysqli_fetch_assoc($query))
+	                                  {
+		                                 $cook_logo= "image/cook/".$res['cust_email']."/".$res['pro_image'];
+		                                 $food_pic= "image/cook/".$res['cust_email']."/foodimages/".$res['fldimage'];
+	                                   ?>
+	                                      <div class="container-fluid">
+	                                          <div class="container-fluid"><!--product row container 1-->
+	                                               <div class="row" style="padding:10px; ">
+		                            <!--cook logo-->  <div class="col-sm-2"><img src="<?php echo $cook_logo; ?>" class="rounded-circle" height="50px" width="50px" alt="Cinque Terre"></div>
+		                                               <div class="col-sm-5">
+		                            <!--cookname-->        <span style="font-family: 'Miriam Libre', sans-serif; font-size:28px;color:#CB202D;"><?php echo $res['cust_name']; ?></span>
+                                                       </div>
+		                            <!--dollar-->      <div class="col-sm-3"><i  style="font-size:20px;" class="fas fa-dollar-sign"></i>&nbsp;<span style="color:green; font-size:25px;"><?php echo $res['cost']; ?></span></div>
+									                   <form method="post">
+		                         <!--add to cart-->    <div class="col-sm-2" style="text-align:left;padding:10px; font-size:25px;"><button type="submit"  name="addtocart" value="<?php echo $res['food_id'];?>"><span style="color:green;"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span></button></div>
+		                                               </form>
+													</div>
+		 
+	                                           </div>
+	                                           <div class="container-fluid"><!--product row container 2-->
+	                                                <div class="row" style="padding:10px;padding-top:0px;padding-right:0px; padding-left:0px;">
+		                           <!--food Image-->     <div class="col-sm-12"><img src="<?php echo $food_pic; ?>" class="rounded" height="250px" width="100%" alt="Cinque Terre"></div>
+		 		                                    </div>
+	                                            </div>
+	                                            <div class="container-fluid"><!--product row container 3-->
+	                                                 <div class="row" style="padding:10px; ">
+		                                                 <div class="col-sm-6">
+		                               <!--cuisine-->          <span><li><?php echo $res['cuisines']; ?></li></span>
+		                                <!--cost-->            <span><li><?php echo "$".$res['cost']; ?>&nbsp;for 1</li></span>
+		                                <!--deliverytime-->    <span><li>Up To 60 Minutes</li></span>
+		                                                 </div>
+		                            <!--deliverytime-->  <div class="col-sm-6" style="padding:20px;"><h3><?php echo"(" .$res['foodname'].")"?></h3></div>
+		                                               </div>
+		 
+	                                             </div>
+	
+	
+	                                   <?php
+	                                     }
+	                                    ?>
+	                                    </div>
 	 </div>
 	
 	</div>
@@ -455,11 +498,53 @@ ul li a:hover{text-decoration:none;}
 	   <!--main row 2 left right starts-->
 	   <div class="col-sm-6">
 	        <div class="container-fluid">
-	             <img src="img/pastaveg_640x480.jpg" height="300px" width="100%"><!--image-->
-	        </div>
-	        <div class="container">
-	        <!--paragraph content--> 
-	             <p style="font-family: 'Lobster', cursive; font-weight:light; font-size:25px;"></p>
+			<?php
+	                        $food_id=$arr[1];
+	                        $query=mysqli_query($con,"SELECT cook.cust_email,cook.cust_name,cook.fld_mob,
+	                        cook.fld_phone,cook.fld_address,cook.pro_image,food.food_id,food.foodname,food.cost,
+	                        food.cuisines,food.paymentmode,food.fldimage from cook inner join
+	                        food on cook.cook_id=food.cook_id where food.food_id='$food_id'");
+	                             while($res=mysqli_fetch_assoc($query))
+	                                  {
+		                                 $cook_logo= "image/cook/".$res['cust_email']."/".$res['pro_image'];
+		                                 $food_pic= "image/cook/".$res['cust_email']."/foodimages/".$res['fldimage'];
+	                                   ?>
+	                                      <div class="container-fluid">
+	                                          <div class="container-fluid"><!--product row container 1-->
+	                                               <div class="row" style="padding:10px; ">
+		                            <!--cook logo-->  <div class="col-sm-2"><img src="<?php echo $cook_logo; ?>" class="rounded-circle" height="50px" width="50px" alt="Cinque Terre"></div>
+		                                               <div class="col-sm-5">
+		                            <!--cookname-->        <span style="font-family: 'Miriam Libre', sans-serif; font-size:28px;color:#CB202D;"><?php echo $res['cust_name']; ?></span>
+                                                       </div>
+		                            <!--dollar-->      <div class="col-sm-3"><i  style="font-size:20px;" class="fas fa-dollar-sign"></i>&nbsp;<span style="color:green; font-size:25px;"><?php echo $res['cost']; ?></span></div>
+									                   <form method="post">
+		                         <!--add to cart-->    <div class="col-sm-2" style="text-align:left;padding:10px; font-size:25px;"><button type="submit"  name="addtocart" value="<?php echo $res['food_id'];?>"><span style="color:green;"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span></button></div>
+		                                               </form>
+													</div>
+		 
+	                                           </div>
+	                                           <div class="container-fluid"><!--product row container 2-->
+	                                                <div class="row" style="padding:10px;padding-top:0px;padding-right:0px; padding-left:0px;">
+		                           <!--food Image-->     <div class="col-sm-12"><img src="<?php echo $food_pic; ?>" class="rounded" height="250px" width="100%" alt="Cinque Terre"></div>
+		 		                                    </div>
+	                                            </div>
+	                                            <div class="container-fluid"><!--product row container 3-->
+	                                                 <div class="row" style="padding:10px; ">
+		                                                 <div class="col-sm-6">
+		                               <!--cuisine-->          <span><li><?php echo $res['cuisines']; ?></li></span>
+		                                <!--cost-->            <span><li><?php echo "$".$res['cost']; ?>&nbsp;for 1</li></span>
+		                                <!--deliverytime-->    <span><li>Up To 60 Minutes</li></span>
+		                                                 </div>
+		                            <!--deliverytime-->  <div class="col-sm-6" style="padding:20px;"><h3><?php echo"(" .$res['foodname'].")"?></h3></div>
+		                                               </div>
+		 
+	                                             </div>
+	
+	
+	                                   <?php
+	                                     }
+	                                    ?>
+	                                    </div>
 	        </div>
 	  </div>
 	   <!--main row 2 left right ends-->
