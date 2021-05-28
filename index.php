@@ -314,7 +314,7 @@ ul li a:hover{text-decoration:none;}
     <div class="col-sm-6">
 	<div class="container-fluid">
 	<?php
-	                        $food_id=$arr[1];
+	                        $food_id=$arr[0];
 	                        $query=mysqli_query($con,"SELECT cook.cust_email,cook.cust_name,cook.fld_mob,
 	                        cook.fld_phone,cook.fld_address,cook.pro_image,food.food_id,food.foodname,food.cost,
 	                        food.cuisines,food.paymentmode,food.fldimage from cook inner join
@@ -365,10 +365,9 @@ ul li a:hover{text-decoration:none;}
 	</div>
 	
     <div class="col-sm-6">
-	<br><br><br><br><br><br><br><br><br><br><br><br>
 	<div class="container-fluid rounded" style="border:solid 1px #F0F0F0;">
 	<?php
-	   $food_id=$arr[0];
+	   $food_id=$arr[1];
 	  $query=mysqli_query($con,"SELECT cook.cust_email,cook.cust_name,cook.fld_mob,
 	  cook.fld_phone,cook.fld_address,cook.cook_id,cook.pro_image,food.food_id,food.foodname,food.cost,
 	  food.cuisines,food.paymentmode,food.fldimage from cook inner join
@@ -440,11 +439,10 @@ ul li a:hover{text-decoration:none;}
 
 <div class="container-fluid">
      <div class="row"><!--main row-->
-          <div class="col-sm-6"><!--main row 2 left-->
-	           <br><br><br><br><br><br><br><br><br><br><br><br>
+          <div class="col-sm-6"><!--main row 2 left-->	           
 	            <div class="container-fluid rounded" style="border:solid 1px #F0F0F0;"><!--product container-->
 	                  <?php
-	                        $food_id=$arr[1];
+	                        $food_id=$arr[2];
 	                        $query=mysqli_query($con,"SELECT cook.cust_email,cook.cust_name,cook.fld_mob,
 	                        cook.fld_phone,cook.fld_address,cook.pro_image,food.food_id,food.foodname,food.cost,
 	                        food.cuisines,food.paymentmode,food.fldimage from cook inner join
@@ -499,7 +497,7 @@ ul li a:hover{text-decoration:none;}
 	   <div class="col-sm-6">
 	        <div class="container-fluid">
 			<?php
-	                        $food_id=$arr[1];
+	                        $food_id=$arr[3];
 	                        $query=mysqli_query($con,"SELECT cook.cust_email,cook.cust_name,cook.fld_mob,
 	                        cook.fld_phone,cook.fld_address,cook.pro_image,food.food_id,food.foodname,food.cost,
 	                        food.cuisines,food.paymentmode,food.fldimage from cook inner join
