@@ -29,7 +29,7 @@ $msg="";
 	
 	move_uploaded_file($_FILES['image']['tmp_name'],"image/cook/$email/".$_FILES['image']['name']);
 
-  $msg="we have sent a verification link to $email<br><br> Please check your inbox and click on the link to get started. If you can't find this email (which coud be due to spam filters), just request a new one here.";
+  
 	}
 	$_SESSION['id']=$email;
 	

@@ -1,42 +1,47 @@
 <?php
-session_start();
+// session_start();
 include("connection.php");
-extract($_REQUEST);
-    if(isset($_SESSION['id']))
-{
-	header("location:food_status.php");
-}
-$msg="";
 
-	if(isset($register))
+	if(isset($_POST["register"]))
      {
-	$sql=mysqli_query($con,"SELECT * from delivery_person where email='$email'");
-    if(mysqli_num_rows($sql))
-	{
-	  $email_error="This Email Id is laready registered with us";
-	}
-	else
-	{
-	$image=$_FILES['image']['name'];
-	$sql=mysqli_query($con,"INSERT into delivery_person 
-	(name ,email,password, phone,address,image,email_varification)
-       	values('$name','$email','$pswd','$mob','$phone','$address','$image',0)");
-	
-    if($sql)
-	{
-	mkdir("image/deliver");
-	mkdir("image/deliver/$email");
-	
-	move_uploaded_file($_FILES['image']['tmp_name'],"image/delivery/$email/".$_FILES['image']['name']);
-
-  $msg="we have sent a verification link to $email<br><br> Please check your inbox and click on the link to get started. If you can't find this email (which coud be due to spam filters), just request a new one here.";
-	}
-	$_SESSION['id']=$email;
-	
-	header("location:deliver_login.php");
-	
-	}
-  }
+       $name=($_POST['name']);
+       $email=($_POST['email']);
+       $password=($_POST['pswd']);
+       $mob=($_POST['mob']);
+       $address=($_POST['address']);
+       $image= ($_POST['image']);
+      
+       
+	      $sql=mysqli_query($con,"SELECT * from delivery_person where email='$email'");
+        if($sql->num_rows > 0)
+          {
+            $email_error="This Email Id is already registered with us";
+          }
+        else
+          {
+          $image=$_FILES['image']['name'];
+          $sql=mysqli_query($con,"INSERT into delivery_person 
+          (name ,email,password, phone,address,image)
+                values('$name','$email','$password','$mob','$address','$image')");
+          
+             }
+             if($sql)
+              {
+              mkdir("image/deliver");
+              mkdir("image/deliver/$email");
+              
+              move_uploaded_file($_FILES['image']['tmp_name'],"image/deliver/$email/".$_FILES['image']['name']);
+              
+              }
+          $_SESSION['id']=$email;
+          
+          header("location:delivery_login.php");
+          
+    }else
+    {
+      echo "fail to insert data";
+    }
+  
 	
 	
   
@@ -118,14 +123,14 @@ $msg="";
 	  <div class="tab-content" id="myTabContent">
 	      <div class="tab-pane fade show active" id="register" role="tabpanel" aria-labelledby="profile-tab">
 			    <div class="footer" style="color:red;"><?php if(isset($loginmsg)){ echo $loginmsg;}?></div>
-			          <form action="" method="post" enctype="multipart/form-data">
+			          <form action="delivery_login.php" method="POST" enctype="multipart/form-data">
                       <div class="form-group">
                           <label for="name">Name:</label>
-                          <input type="text" class="form-control" id="name" value="<?php if(isset($name)) { echo $name;}?>" placeholder="Enter your Name" name="name" required/>
+                          <input type="text" class="form-control" id="name"  placeholder="Enter your Name" name="name" required/>
                       </div>
 	                    <div class="form-group">
                           <label for="name">Email:</label>
-                          <input type="email" class="form-control" id="email" value="<?php if(isset($email)) { echo $email;}?>" placeholder="Enter Email" name="email" required/>
+                          <input type="email" class="form-control" id="email" placeholder="Enter Email" name="email" required/>
                           <span style="color:red;"><?php if(isset($email_error)){ echo $email_error;} ?></span>
 	                    </div>
 	                    <div class="form-group">
@@ -134,11 +139,11 @@ $msg="";
                       </div>
                       <div class="form-group">
                           <label for="mob">Phone:</label>
-                          <input type="tel" class="form-control" value="<?php if(isset($mob)) { echo $mob;}?>"id="mob" placeholder="Enter mobile number " name="mob" required/>
+                          <input type="tel" class="form-control" id="mob" placeholder="Enter mobile number " name="mob" required/>
                       </div>                    
 	                 <div class="form-group">
                           <label for="add">Address:</label>
-                          <input type="text" class="form-control" id="add" placeholder="Enter Address" value="<?php if(isset($address)) { echo $address;}?>" name="address" required>                        
+                          <input type="text" class="form-control" id="add" placeholder="Enter Address"  name="address" required>                        
                           <div class="container">  
                      </div>
 	                 <div class="form-group">

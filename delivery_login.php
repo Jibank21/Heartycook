@@ -4,21 +4,22 @@ include("connection.php");
 extract($_REQUEST);
 if(isset($_SESSION['id']))
 {
-	header("location:food_status.php");
+header("location:food_status.php");
+  echo "session id is set";
 }
-  if(isset($login))
-  {
-	$sql=mysqli_query($con,"SELECT * from deliver_person where email='$username' && password='$pswd' ");
-    if(mysqli_num_rows($sql))
-	{
-	 $_SESSION['id']=$username;
-	header('location:food_status.php');	
-	}
-	else
-	{
-	$admin_login_error="Invalid Username or Password";	
-	}
-  }
+  if(isset($_POST['login']))
+    {
+      $sql=mysqli_query($con,"SELECT * from delivery_person where email='$email' && password='$password' ");
+        if(mysqli_num_rows($sql))
+          {
+          $_SESSION['id']=$email;
+          header('location:food_status.php');	
+          }
+        else
+          {
+          $admin_login_error="Invalid Username or Password";	
+          }
+    }
    
 ?>
 
@@ -82,7 +83,7 @@ if(isset($_SESSION['id']))
 	   <!--login Section-- starts-->
             <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="home-tab">
 			    <div class="footer" style="color:red;"><?php if(isset($admin_login_error)){ echo $admin_login_error;}?></div>
-			  <form action="" method="post" enctype="multipart/form-data">
+			  <form action="food_status.php" method="POST" enctype="multipart/form-data">
                         <div class="form-group">
                            <label for="username">Username:</label>
                            <input type="email" class="form-control" id="username" placeholder="Enter email address" name="username" required/>
