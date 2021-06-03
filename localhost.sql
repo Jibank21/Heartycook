@@ -105,7 +105,7 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`cust_id`, `cust_name`, `cust_email`, `cust_phone`, `password`) VALUES
-(1, 'gajender', 'customer1@gmail.com', 7503515382, 'customer1'),
+(1, 'ganesh', 'customer1@gmail.com', 7503515382, 'customer1'),
 (2, 'sanjay', 'customer2@gmail.com', 7503515386, 'customer2'),
 (3, 'saana', 'customer3@gmail.com', 7503515383, 'customer3'),
 (4, 'jeevan', 'jeevan@gmail.com', 9807331986, 'jeevan');
