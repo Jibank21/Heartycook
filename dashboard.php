@@ -46,6 +46,16 @@ else
 }
 
 }
+
+if(isset($_GET['type']) && ($_GET['type']!=='')&& isset($_GET['id']) && ($_GET['id']>0)){
+	$type=($_GET['type']);
+	$id=($_GET['id']);
+	if($type=='delete'){
+		mysqli_query($con, "DELETE from delivery_person where id=$id");
+		header('dashboard.php');
+	}
+
+}
 ?>
 <html>
   <head>
@@ -68,7 +78,7 @@ ul li a:hover{text-decoration:none;}
 #social-gp:hover{color:#D0463B;}
 #social-em:hover{color:#D0463B;}
 	 </style>
-	 <script>
+	 <script>			
 			function delRecord(id)
 			{
 				//alert(id);
@@ -161,6 +171,9 @@ ul li a:hover{text-decoration:none;}
               <a class="nav-link" style="color:#BDDEFD;"  id="Managecooks-tab" data-toggle="tab" href="#Managecooks" role="tab" aria-controls="Managecooks" aria-selected="false">Manage cooks</a>
           </li>
 		  <li class="nav-item">
+              <a class="nav-link" style="color:#BDDEFD;"  id="Managedriver-tab" data-toggle="tab" href="#Managedriver" role="tab" aria-controls="Managedriver" aria-selected="false">Manage Driver</a>
+          </li>
+		  <li class="nav-item">
               <a class="nav-link" style="color:#BDDEFD;" id="orderstatus-tab" data-toggle="tab" href="#orderstatus" role="tab" aria-controls="orderstatus" aria-selected="false">Order status</a>
           </li>
 		  
@@ -246,6 +259,7 @@ ul li a:hover{text-decoration:none;}
 			 	</form>
 			</div>
 			<!--tab 2 ends-->
+			<!-- tab 3 start -->
 			 
 			<div class="tab-pane fade show" id="Managecooks" role="tabpanel" aria-labelledby="Managecooks-tab">
 			    <div class="container">
@@ -276,6 +290,47 @@ ul li a:hover{text-decoration:none;}
 							
 							<form method="post">
 							<td><a href="#"  style="text-decoration:none; color:white;" onclick="delRecord(<?php echo $row['cook_id']; ?>)"><button type="button" class="btn btn-danger">Remove cook</a></a></td>
+							</form>
+						</tr>
+							<?php
+							}
+							?>		   
+					</tbody>
+           		  </table>
+	 
+	 			</div>   	
+			</div>
+			<!-- tab 3 ends -->
+			<!-- tab 4 starts -->
+			<div class="tab-pane fade show" id="Managedriver" role="tabpanel" aria-labelledby="Managedriver-tab">
+			    <div class="container">
+	               <table class="table">
+					<thead>
+						<tr>
+							<th scope="col"></th>
+								<th scope="col">Driver Id</th>
+								<th scope="col">Name</th>                         
+								<th scope="col">Address</th>
+								<th scope="col">Remove driver</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php
+						$query=mysqli_query($con,"SELECT  * from delivery_person");
+							while($row=mysqli_fetch_array($query))
+							{
+						
+						?>			 
+					
+						<tr>
+							
+							<td><img src="image/deliver/<?php echo $row['email']."/" .$row['image'];?>" height="50px" width="100px"></td>
+							<th scope="row"><?php echo $row['id'];?></th>
+							<td><?php echo $row['name'];?></td>
+							<td><?php echo $row['address'];?></td>
+							
+							<form method="POST">
+							<td><a href="?id=<?php echo $id=$row['id']; ?>&type=delete"  style="text-decoration:none; color:white;" ><button type="button" class="btn btn-danger" id="remove">Remove Driver</a></a></td>
 							</form>
 						</tr>
 							<?php

@@ -1,5 +1,7 @@
 <?php
 session_start();
+$_SESSION ['id']=$_POST['username'];
+$_SESSION['pwd']= $_POST['pswd'];
 include("connection.php");
 extract($_REQUEST);
 if(isset($_SESSION['id']))
@@ -12,7 +14,7 @@ if(isset($_SESSION['id']))
 
 if(!isset($_SESSION['id']))
 {
-	 echo "fail"; //header("location:delivery_login.php?msg=Please Login To continue");
+	header("location:delivery_login.php?msg=Please Login To continue");
 }
 else
 {
@@ -108,7 +110,7 @@ if(isset($upd_account))
 	if(!empty($id))
 	{
 	?>
-	<a class="navbar-brand" style="color:black; text-decoration:none;"><i class="far fa-user"><?php if(isset($id)) { echo $vr['cust_name']; }?></i></a>
+	<a class="navbar-brand" style="color:black; text-decoration:none;"><i class="far fa-user"><?php if(isset($id)) { echo $vr['name']; }?></i></a>
 	<?php
 	}
 	?>
@@ -165,8 +167,8 @@ if(isset($upd_account))
        <!--tab heading-->
 	   <ul class="nav nav-tabs nabbar_inverse" id="myTab" style="background:#ED2553;border-radius:10px 10px 10px 10px;" role="tablist">
                     
-		  <li class="nav-item">
-              <a class="nav-link" id="accountsettings-tab" data-toggle="tab" href="#accountsettings" role="tab" aria-controls="accountsettings" aria-selected="false">Account Settings</a>
+		  <li class="nav-item active">
+              <a class="nav-link " id="accountsettings-tab" data-toggle="tab" href="#accountsettings" role="tab" aria-controls="accountsettings" aria-selected="false">Account Settings</a>
           </li>
 		  
 		  <li class="nav-item">
@@ -194,7 +196,7 @@ if(isset($upd_account))
 				 $emm=$upd_info_row['email'];
 				 $psd=$upd_info_row['password'];				 
 				$ad=$upd_info_row['address'];
-				$mb=$upd_info_row['mob'];
+				$mb=$upd_info_row['phone'];
 				$log=$upd_info_row['image'];
 				
 				?>
@@ -213,7 +215,7 @@ if(isset($upd_account))
                     </div>
 					<div class="form-group">
                       <label for="mobile">Mobile</label>
-                      <input type="text" id="mobile" pattern="[6-9]{1}[0-9]{9}" value="<?php if(isset($mb)){ echo $mb;}?>" class="form-control" name="mob" required/>
+                      <input type="text" id="mobile" value="<?php if(isset($mb)){ echo $mb;}?>" class="form-control" name="mob" required/>
                     </div>
 					
                    <div class="form-group">
