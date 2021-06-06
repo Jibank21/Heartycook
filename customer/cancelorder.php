@@ -4,7 +4,7 @@ include("../connection.php");
 if($id=$_GET['id'])
 	
 	{
-		if(mysqli_query($con,"update order set fldstatus='cancelled' where order_id='$id'"))
+		if(mysqli_query($con,"UPDATE orders set fldstatus='cancelled' where order_id='$id'"))
 		{
 			 header( "refresh:3;url=cart.php" );
 		}

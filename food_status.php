@@ -22,7 +22,7 @@ $query=mysqli_query($con,"SELECT * from delivery_person   where email='$id'");
 if(mysqli_num_rows($query))
 {   if(!file_exists("../image/deliver/".$id."/foodimages"))
 	{
-		$dir=mkdir("../image/delivery/".$id."/foodimages");
+		$dir=mkdir("../image/deliver/".$id."/foodimages");
 	}
 	$row=mysqli_fetch_array($query);
     $v_id=$row['id'];
@@ -167,7 +167,7 @@ if(isset($upd_account))
        <!--tab heading-->
 	   <ul class="nav nav-tabs nabbar_inverse" id="myTab" style="background:#ED2553;border-radius:10px 10px 10px 10px;" role="tablist">
                     
-		  <li class="nav-item active">
+		  <li class="nav-item">
               <a class="nav-link " id="accountsettings-tab" data-toggle="tab" href="#accountsettings" role="tab" aria-controls="accountsettings" aria-selected="false">Account Settings</a>
           </li>
 		  
@@ -187,7 +187,7 @@ if(isset($upd_account))
 			<!--tab 2 starts-->		
 			
 			 <!--tab 3-- starts-->
-			 <div class="tab-pane fade" id="accountsettings" role="tabpanel" aria-labelledby="accountsettings-tab">
+			 <div class="tab-pane fade active" id="accountsettings" role="tabpanel" aria-labelledby="accountsettings-tab">
 			    <form method="POST" enctype="multipart/form-data">
 				<?php
 			    $upd_info=mysqli_query($con,"SELECT * from delivery_person where email='$id'");

@@ -234,7 +234,7 @@ if(isset($del))
                          <td><?php echo "$ ".$res['cost'];?></td>
                          <td><?php echo $res['cuisines'];?></td>
                          <td><?php echo $nm; ?></td>
-		                <form method="post" enctype="multipart/form-data">
+		                <form method="POST" enctype="multipart/form-data">
                            <td><button type="submit" name="del"  value="<?php echo $res['cart_id']?>" class="btn btn-danger">Delete</button></td>
                         </form>
                         <td><?php $total=$total+$res['cost']; $gtotal[]=$total;  ?></td>
@@ -257,7 +257,10 @@ if(isset($del))
 					  <td></td>
 					  
 					  <td style="padding:30px; text-align:center;">
-					  <a href="order.php?cust_id=<?php echo $cust_id; ?>"><button type="button" style=" color:white; font-weight:bold; text-transform:uppercase;" class="btn btn-warning">Proceed to checkout</button></a>
+					  <form action="order.php">
+					  <a href="order.php?cust_id=<?php echo $cust_id?>"><button type="button" style=" color:white; font-weight:bold; text-transform:uppercase;" class="btn btn-warning">Proceed to checkout</button></a>
+					  </form>
+					  
 					  </td>
 					  <td></td>
 					  </tr>
@@ -290,19 +293,19 @@ if(isset($del))
 			
 			<!--tab 2 starts-->
             <div class="tab-pane fade" id="manageaccount" role="tabpanel" aria-labelledby="manageaccount-tab">
-			    <form method="post" enctype="multipart/form-data">
+			    <form method="POST" enctype="multipart/form-data">
                     <div class="form-group">
                       <label for="name">Name</label>
                       <input type="text" id="name" value="<?php if(isset($cust_name)){ echo $cust_name;}?>" class="form-control" name="name" required="required"/>
                     </div>
 					
 					<div class="form-group">
-                      <label for="email">Email</label>
+                      <label for="email" required>Email</label>
                       <input type="email" id="email" name="email" value="<?php if(isset($cust_email)){ echo $cust_email;}?>" class="form-control"  readonly/>
                     </div>
 					<div class="form-group">
                       <label for="mobile">Mobile</label>
-                      <input type="tel" id="mobile" class="form-control" name="mobile" pattern="[6-9]{1}[0-9]{2}[0-9]{3}[0-9]{4}" value="<?php if(isset($cust_phone)){ echo $cust_phone;}?>" placeholder="" required>
+                      <input type="tel" id="mobile" class="form-control" name="mobile"  value="<?php if(isset($cust_phone)){ echo $cust_phone;}?>" placeholder="" required>
                     </div>
 					
                    <div class="form-group">

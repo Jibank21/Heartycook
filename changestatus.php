@@ -98,7 +98,7 @@ else
       <div class="row">
 	 
 	  <div class="col-sm-4">Update Order Status</div>
-	  <div class="col-sm-4">Ready<input type="radio"  name="status" value="Delivered">&nbsp;&nbsp;&nbsp;Out Of Stock<input type="radio"  name="status" value="Out Of Stock"><br>
+	  <div class="col-sm-4">Ready To Deliver<input type="radio"  name="status" value="Delivered">&nbsp;&nbsp;&nbsp;Out Of Stock<input type="radio"  name="status" value="Out Of Stock"><br>
 	  <br>
 	  
 	  <button type="submit" class="btn btn-outline-success" name="updstatus">Update Status</button>
