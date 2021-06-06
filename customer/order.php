@@ -3,7 +3,7 @@ session_start();
 include("../connection.php");
 echo $cust_id=$_GET['cust_id'];
 
-$query=mysqli_query($con,"select food.food_id,food.foodname,food.cook_id,food.cost,food.cuisines,food.fldimage,cart.cart_id,cart.product_id,cart.customer_id from food inner  join cart on food.food_id=cart.product_id where cart.customer_id='$cust_id'");
+$query=mysqli_query($con,"SELECT food.food_id,food.foodname,food.cook_id,food.cost,food.cuisines,food.fldimage,cart.cart_id,cart.product_id,cart.customer_id from food inner  join cart on food.food_id=cart.product_id where cart.customer_id='$cust_id'");
 $re=mysqli_num_rows($query);
 while($row=mysqli_fetch_array($query))
 {
@@ -15,11 +15,11 @@ while($row=mysqli_fetch_array($query))
 	//$em_id=$row['cust_email'];
 	echo 'payment status is'.$paid="In Process";
 	
-	if(mysqli_query($con,"insert into order
+	if(mysqli_query($con,"INSERT into orders
 	(cart_id,cook_id,food_id,cust_email_id,payment,fldstatus) values
 	('$cart_id','$cook_id','$food_id','$cust_id','$cost','$paid')"))
 	{
-		if(mysqli_query($con,"delete from cart where cart_id='$cart_id'"))
+		if(mysqli_query($con,"DELETE from cart where cart_id='$cart_id'"))
 		{
 			header("location:customerupdate.php");
 		}
@@ -49,7 +49,7 @@ while($row=mysqli_fetch_array($query))
      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
      <link rel="stylesheet" href="../css/style.css">
 	 <style>
-		ul li{}
+		ul li{list-style: none;}
 		ul li a {color:white;padding:40px; }
 		ul li a:hover {color:white;}
 	 </style>
@@ -75,9 +75,7 @@ while($row=mysqli_fetch_array($query))
     
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="index.php">Home
-                  
-                </a>
+            <a class="nav-link" href="index.php">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="aboutus.php">About</a>
@@ -88,24 +86,24 @@ while($row=mysqli_fetch_array($query))
           <li class="nav-item">
             <a class="nav-link" href="contact.php">Contact</a>
           </li>
-      <li class="nav-item">
-        <form method="post">
-            <?php
-        if(empty($_SESSION['id']))
-        {
-        ?>
-        <button class="btn btn-outline-danger my-2 my-sm-0" name="login">Log In</button>&nbsp;&nbsp;&nbsp;
-              <?php
-        }
-        else
-        {
-        ?>
-        
-        <button class="btn btn-outline-success my-2 my-sm-0" name="logout" type="submit">Log Out</button>&nbsp;&nbsp;&nbsp;
-        <?php
-        }
-        ?>
-        </form>
+          <li class="nav-item">
+            <form method="post">
+                <?php
+                if(empty($_SESSION['id']))
+                {
+                ?>
+                <button class="btn btn-outline-danger my-2 my-sm-0" name="login">Log In</button>&nbsp;&nbsp;&nbsp;
+                      <?php
+                }
+                else
+                {
+                ?>
+                
+                <button class="btn btn-outline-success my-2 my-sm-0" name="logout" type="submit">Log Out</button>&nbsp;&nbsp;&nbsp;
+                <?php
+                }
+                ?>
+            </form>
           </li>
       
       
@@ -118,8 +116,7 @@ while($row=mysqli_fetch_array($query))
 <div class="row">
   <div class="col-75">
     <div class="container">
-      <form action="/action_page.php">
-
+      <form action="" method="POST">
         <div class="row">
           <div class="col-50">
             <h3>Billing Address</h3>
@@ -179,22 +176,5 @@ while($row=mysqli_fetch_array($query))
         <input type="submit" value="Continue to checkout" class="btn">
       </form>
     </div>
-  </div>
-
-  <!-- <div class="col-25">
-    <div class="container">
-      <h4>Cart
-        <span class="price" style="color:black">
-          <i class="fa fa-shopping-cart"></i>
-          <b>4</b>
-        </span>
-      </h4>
-      <p><a href="#">Product 1</a> <span class="price">$15</span></p>
-      <p><a href="#">Product 2</a> <span class="price">$5</span></p>
-      <p><a href="#">Product 3</a> <span class="price">$8</span></p>
-      <p><a href="#">Product 4</a> <span class="price">$2</span></p>
-      <hr>
-      <p>Total <span class="price" style="color:black"><b>$30</b></span></p>
-    </div>
-  </div> -->
+  </div>  
 </div> 
