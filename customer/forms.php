@@ -51,7 +51,7 @@ if(isset($register))
 	}
 	else
 	{
-		if(mysqli_query($con,"INSERT into customer (cust_name,cust_email,password,cust_phone) values('$name','$email','$password','$mobile')"))
+		if(mysqli_query($con,"INSERT into customer (cust_name,cust_email,address,password,cust_phone) values('$name','$email',$address'$password','$mobile')"))
     {
 		$_SESSION['cust_id']=$email;
 		if(!empty($customer_email && $product_id))
@@ -172,6 +172,10 @@ if(isset($register))
                       <label for="email">Email</label>
                       <input type="email" id="email" name="email" class="form-control"  required/>
                     </div>
+					<div class="form-group">
+                      <label for="mobile">Address</label>
+                      <input type="tel" id="address" class="form-control" name="address"  placeholder="please enter address" required>
+                    </div>
 					
                    <div class="form-group">
                       <label for="pwd">Password:</label>
@@ -180,7 +184,7 @@ if(isset($register))
 				   
 				   <div class="form-group">
                       <label for="mobile">Mobile</label>
-                      <input type="tel" id="mobile" class="form-control" name="mobile" pattern="[6-9]{1}[0-9]{2}[0-9]{3}[0-9]{4}" placeholder="" required>
+                      <input type="tel" id="mobile" class="form-control" name="mobile"  placeholder="please enter mobile number" required>
                     </div>
  
                   <button type="submit" name="register" style="background:#ED2553; border:1px solid #ED2553;" class="btn btn-primary">Create New Account</button>

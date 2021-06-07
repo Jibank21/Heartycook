@@ -66,7 +66,7 @@ $query=mysqli_query($con,"SELECT food.foodname,food.cook_id,food.cost,food.cuisi
 	                           {
 		                        $.ajax({
 			                    url:"fetch2.php",
-			                    method:"post",
+			                    method:"POST",
 			                    data:{query:query},
 			                    success:function(data)
 			                                 {
@@ -99,7 +99,7 @@ $query=mysqli_query($con,"SELECT food.foodname,food.cook_id,food.cost,food.cuisi
 	                           {
 		                        $.ajax({
 			                    url:"fetch.php",
-			                    method:"post",
+			                    method:"POST",
 			                    data:{query:query},
 			                    success:function(data)
 			                                 {

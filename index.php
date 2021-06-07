@@ -211,10 +211,10 @@ ul li a:hover{text-decoration:none;}
       <ul class="navbar-nav ml-auto">
         
 		<li class="nav-item"><!--cook search-->
-		     <a href="#" class="nav-link"><form method="post"><input type="text" name="search_cook" id="search_cook" placeholder="Search cooks " class="form-control " /></form></a>
+		     <a href="#" class="nav-link"><form method="POST"><input type="text" name="search_cook" id="search_cook" placeholder="Search cooks " class="form-control " /></form></a>
 		  </li>
           <li class="nav-item">
-		     <a href="#" class="nav-link"><form method="post"><input type="text" name="search_text" id="search_text" placeholder="Search by Food Name " class="form-control " /></form></a>
+		     <a href="#" class="nav-link"><form method="POST"><input type="text" name="search_text" id="search_text" placeholder="Search by Food Name " class="form-control " /></form></a>
 		  </li>
 		  <li class="nav-item active">
           <a class="nav-link" href="index.php">Home</a>

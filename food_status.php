@@ -168,7 +168,7 @@ if(isset($upd_account))
 	   <ul class="nav nav-tabs nabbar_inverse" id="myTab" style="background:#ED2553;border-radius:10px 10px 10px 10px;" role="tablist">
                     
 		  <li class="nav-item">
-              <a class="nav-link " id="accountsettings-tab" data-toggle="tab" href="#accountsettings" role="tab" aria-controls="accountsettings" aria-selected="false">Account Settings</a>
+              <a class="nav-link active" id="accountsettings-tab" data-toggle="tab" href="#accountsettings" role="tab" aria-controls="accountsettings" aria-selected="false">Account Settings</a>
           </li>
 		  
 		  <li class="nav-item">
@@ -187,7 +187,7 @@ if(isset($upd_account))
 			<!--tab 2 starts-->		
 			
 			 <!--tab 3-- starts-->
-			 <div class="tab-pane fade active" id="accountsettings" role="tabpanel" aria-labelledby="accountsettings-tab">
+			 <div class="tab-pane fade show active" id="accountsettings" role="tabpanel" aria-labelledby="accountsettings-tab">
 			    <form method="POST" enctype="multipart/form-data">
 				<?php
 			    $upd_info=mysqli_query($con,"SELECT * from delivery_person where email='$id'");
@@ -241,6 +241,7 @@ if(isset($upd_account))
 	            <table class="table">
 				<tbody>
 				<th>Order Id</th>
+				<th>Cook</th>
 				<th>Customer Email</th>
 				<th>Food Id</th>
 				<th>Order Status</th>
@@ -256,7 +257,8 @@ if(isset($upd_account))
 						?>
 						<tr>
 						<td><?php echo $orderrow['order_id']; ?></td>
-						<td><?php echo $orderrow['cust_email_id']; ?></td>
+						<td><?php echo $orderrow['cook_id']; ?></td>
+						<td><a href="customerdetails.php?cust_email_id= <?php echo $orderrow['cust_email_id']; ?>"></a><?php echo $orderrow['cust_email_id']; ?></td>
 						<td><?php echo $orderrow['food_id']; ?></td>
 						<?php
 			   if($stat=="cancelled" || $stat=="Out Of Stock")
