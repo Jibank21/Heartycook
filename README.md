@@ -22,7 +22,7 @@ password:jiban1
 
 
 admin: 
-load localhost/hratycook/admin.php
+load localhost/heartycook/admin.php
 username: admin
 password:admin@123
 
