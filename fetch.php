@@ -7,7 +7,7 @@ if(isset($_POST["query"]))
 	$query = "SELECT * FROM cook 
 	WHERE cust_name LIKE '%".$search."%'
 	OR fld_address LIKE '%".$search."%' 
-	
+	OR cook_id LIKE '%".$search."%'	
 	";
 }
 else

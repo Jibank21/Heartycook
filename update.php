@@ -224,17 +224,17 @@ if(isset($logout))
                                             <input type="text" class="form-control" id="cuisines" value="<?php if(isset($rcuisines)) { echo $rcuisines;}?>" placeholder="Enter Cuisines" name="cuisines" required>
                                     </div>
 							        
-							        <div class="form-group"><!--payment_mode-->
+							        <!-- <div class="form-group">
 									<?php
 			                         
-			                          $pay=explode(",",$rpaymentmode);
+			                          //$pay=explode(",",$rpaymentmode);
 			
 			                           ?>
-                                         <input type="checkbox" <?php if(in_array("COD",$pay)) { echo "checked"; } ?> name="chk[]" value="COD"/>Cash On Delivery
-			                             <input type="checkbox" <?php if(in_array("Online Payment",$pay)) { echo "checked"; } ?> name="chk[]" value="Online Payment"/>Online Payment
+                                         <input type="checkbox" <?php //if(in_array("COD",$pay)) { echo "checked"; } ?> name="chk[]" value="COD"/>Cash On Delivery
+			                             <input type="checkbox" <?php //if(in_array("Online Payment",$pay)) { echo "checked"; } ?> name="chk[]" value="Online Payment"/>Online Payment
 								         <br>
-								        <span style="color:red;"><?php if(isset($paymessage)){ echo $paymessage;}?></span>
-			      			        </div>
+								        <span style="color:red;"><?php //if(isset($paymessage)){ echo $paymessage;}?></span>
+			      			        </div> -->
 							   
 	                                <div class="form-group">
 									

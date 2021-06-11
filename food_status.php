@@ -76,6 +76,8 @@ if(isset($upd_account))
 			  }
 			  }
 			  
+			
+			 
 ?>
 
 <!DOCTYPE html>
@@ -253,36 +255,44 @@ if(isset($upd_account))
 				{
 					while($orderrow=mysqli_fetch_array($orderquery))
 					{
+						
 						$stat=$orderrow['fldstatus'];
 						?>
 						<tr>
 						<td><?php echo $orderrow['order_id']; ?></td>
-						<td><?php echo $orderrow['cook_id']; ?></td>
-						<td><a href="customerdetails.php?cust_email_id= <?php echo $orderrow['cust_email_id']; ?>"></a><?php echo $orderrow['cust_email_id']; ?></td>
+						<td><a href="search.php?cook_id=<?php echo $orderrow['cook_id']; ?>"><?php echo $orderrow['cook_id']; ?></a></td>
+						<td><a href="customerdetails.php?cust_email_id= <?php echo $orderrow['cust_email_id']; ?>"><?php echo $orderrow['cust_email_id']; ?></a></td>
 						<td><?php echo $orderrow['food_id']; ?></td>
+						<!-- <td>
+						<?php // if($row['status']==1){?>
+                                <a href="?id=<?php // echo $row['id']?> &type=deactive"><label class="badge badge-primary hand_cursor">Acccept</label></a>
+                              <?php //                              }else {
+                                ?>
+                                <a href="?id=<?php //echo $row['id']?> &type=active"><label class="badge badge-info hand_cursor">Reject</label></a></td> -->
 						<?php
-			   if($stat=="cancelled" || $stat=="Out Of Stock")
-			   {
-			   ?>
-			   <td><i style="color:orange;" class="fas fa-exclamation-triangle"></i>&nbsp;<span style="color:red;"><?php echo $orderrow['fldstatus']; ?></span></td>
-			   <?php
+							 // } 
+			  if($stat=="cancelled" || $stat=="Out Of Stock")
+			  {
+			  ?>
+			    <td><i style="color:orange;" class="fas fa-exclamation-triangle"></i>&nbsp;<span style="color:red;"><?php echo $orderrow['fldstatus']; ?></span></td>
+			   <?php 
 			   }
-			   else
+			  else
 				   
-			   {
-			   ?>
-			   <td><span style="color:green;"><?php echo $orderrow['fldstatus']; ?></span></td>
+			    {
+			    ?>
+			    <td><span style="color:green;"><?php echo $orderrow['fldstatus']; ?></span></td>
 			   <?php
-			   }
-			   ?>
-						<form method="POST">
-						<td><a href="changestatus.php?order_id=<?php echo $orderrow['order_id']; ?>"><button type="button" name="changestatus">Update Status</button></a></td>
+			    }
+			    ?>
+			 			<form method="POST">
+			 			<td><a href="changestatus.php?order_id=<?php  echo $orderrow['order_id']; ?>"><button type="button" name="changestatus">Update Status</button></a></td>
 						</form>
-						<tr>
+						<tr> 
 						<?php
-					}
 				}
-				?>
+				}
+				?> 
 				</tbody>
 				</table>
 			 </div>
