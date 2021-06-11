@@ -1,37 +1,28 @@
-## Welcome to GitHub Pages
+Download the zip file
+Extract the file and copy “heartcook” folder
+download xampp 
+Paste inside root directory/ where you install xampp local disk C:  xampp/htdocs
+Open PHPMyAdmin http://localhost/phpmyadmin
+Create  database name heartycook
+Import localhost.sql file given inside the zip package in SQL file 
+Run the script http://localhost/heartycook
 
-You can use the [editor on GitHub](https://github.com/Jibank21/Heartycook/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
+to chek the website
+cook:
+email address: cook1@gmail.com
+password: cook1
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+customer:
+email address: customer1@gmail.com
+password: customer1 
 
-### Markdown
+delivery driver:
+eamil: jiban@gmail.com
+password:jiban1
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
-```markdown
-Syntax highlighted code block
+admin: 
+load localhost/hratycook/admin.php
+username: admin
+password:admin@123
 
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/Jibank21/Heartycook/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
