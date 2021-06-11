@@ -126,12 +126,11 @@ CREATE TABLE `delivery_person` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
+
 --  Dumping data for table `customer`
 
 INSERT INTO `delivery_person` (`id`, `name`, `email`, `password`,`phone`,`address`) VALUES
-(1, 'jiban', 'jiban','jiban@gmail.com','jiban1' 7503515382, 'ccampsie'),
-
-
+(1, 'jiban', 'jiban','jiban@gmail.com','jiban1' 7503515382, 'cca
 -- --------------------------------------------------------
 
 --
