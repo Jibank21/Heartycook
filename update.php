@@ -7,7 +7,7 @@ if(isset($_SESSION['id']))
 if(!empty($_GET['food_id']))
 {
 	$food_id=$_GET['food_id'];
-	$query=mysqli_query($con,"select * from food   where food_id='$food_id'");
+	$query=mysqli_query($con,"SELECT * from food   where food_id='$food_id'");
 if(mysqli_num_rows($query))
 {   
 	 $row=mysqli_fetch_array($query);
@@ -54,7 +54,7 @@ if(isset($update))
 			
 	       {
 		          $paymentmode=implode(",",$chk);
-	              if(mysqli_query($con,"update  food  set foodname='$food_name',cost='$cost',cuisines='$cuisines',paymentmode='$paymentmode' where food_id='$food_id'"))
+	              if(mysqli_query($con,"UPDATE  food  set foodname='$food_name',cost='$cost',cuisines='$cuisines',paymentmode='$paymentmode' where food_id='$food_id'"))
 	   
 	                {
 						header("location:update_food.php?food_id=$food_id");
@@ -76,7 +76,7 @@ if(isset($update))
 			     echo $cuisines."<br>";
 			     echo $paymentmode."<br>";
 			     echo $img_name."<br>";
-	             if(mysqli_query($con,"update  food  set foodname='$food_name',cost='$cost',cuisines='$cuisines',paymentmode='$paymentmode', fldimage='$img_name' where food_id='$food_id'"))
+	             if(mysqli_query($con,"UPDATE  food  set foodname='$food_name',cost='$cost',cuisines='$cuisines',paymentmode='$paymentmode', fldimage='$img_name' where food_id='$food_id'"))
 	
 	                {
 		             echo "update with new pic";
@@ -147,9 +147,7 @@ if(isset($logout))
 	
       <ul class="navbar-nav ml-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="index.php">Home
-                
-              </a>
+          <a class="nav-link" href="index.php">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="aboutus.php">About</a>
@@ -226,17 +224,17 @@ if(isset($logout))
                                             <input type="text" class="form-control" id="cuisines" value="<?php if(isset($rcuisines)) { echo $rcuisines;}?>" placeholder="Enter Cuisines" name="cuisines" required>
                                     </div>
 							        
-							        <div class="form-group"><!--payment_mode-->
+							        <!-- <div class="form-group">
 									<?php
 			                         
-			                          $pay=explode(",",$rpaymentmode);
+			                          //$pay=explode(",",$rpaymentmode);
 			
 			                           ?>
-                                         <input type="checkbox" <?php if(in_array("COD",$pay)) { echo "checked"; } ?> name="chk[]" value="COD"/>Cash On Delivery
-			                             <input type="checkbox" <?php if(in_array("Online Payment",$pay)) { echo "checked"; } ?> name="chk[]" value="Online Payment"/>Online Payment
+                                         <input type="checkbox" <?php //if(in_array("COD",$pay)) { echo "checked"; } ?> name="chk[]" value="COD"/>Cash On Delivery
+			                             <input type="checkbox" <?php //if(in_array("Online Payment",$pay)) { echo "checked"; } ?> name="chk[]" value="Online Payment"/>Online Payment
 								         <br>
-								        <span style="color:red;"><?php if(isset($paymessage)){ echo $paymessage;}?></span>
-			      			        </div>
+								        <span style="color:red;"><?php //if(isset($paymessage)){ echo $paymessage;}?></span>
+			      			        </div> -->
 							   
 	                                <div class="form-group">
 									

@@ -192,7 +192,7 @@ ul li a:hover{text-decoration:none;}
 			{
 			?>
 			<li class="nav-item">
-			  <a href="form/index.php?msg=you must be login first" class="nav-link"><span style="color:red;  font-size:30px;"><i class="fa fa-shopping-cart" aria-hidden="true"><span style="color:red;" id="cart"  class="badge badge-light">0</span></i></span></a>
+			  <a href="customer/index.php?msg=you must be login first" class="nav-link"><span style="color:red;  font-size:30px;"><i class="fa fa-shopping-cart" aria-hidden="true"><span style="color:red;" id="cart"  class="badge badge-light">0</span></i></span></a>
 		    </li>
 			
 			<li class="nav-item">
@@ -204,7 +204,7 @@ ul li a:hover{text-decoration:none;}
 			{
 			?>
 			<li class="nav-item">
-			<a href="form/cart.php" class="nav-link"><form method="post"><span style=" color:green; font-size:30px;"><i class="fa fa-shopping-cart" aria-hidden="true"><span style="color:green;" id="cart"  class="badge badge-light"><?php if(isset($re)) { echo $re; }?></span></i></span></form></a>
+			<a href="customer/cart.php" class="nav-link"><form method="post"><span style=" color:green; font-size:30px;"><i class="fa fa-shopping-cart" aria-hidden="true"><span style="color:green;" id="cart"  class="badge badge-light"><?php if(isset($re)) { echo $re; }?></span></i></span></form></a>
 			</li>
 			<li class="nav-item">
 			<a class="nav-link"><form method="post"><button class="btn btn-outline-success my-2 my-sm-0" name="logout" type="submit">Log Out</button></form></a>
@@ -230,7 +230,7 @@ ul li a:hover{text-decoration:none;}
    <div class="col-sm-6" >
    <?php
 	  
-	  $query=mysqli_query($con,"select cook.cust_email,cook.cust_name,cook.fld_mob,
+	  $query=mysqli_query($con,"SELECT cook.cust_email,cook.cust_name,cook.fld_mob,
 	  cook.fld_phone,cook.fld_address,cook.pro_image,food.foodname,food.cost,
 	  food.cuisines,food.paymentmode,food.fldimage from cook inner join
 	  food on cook.cook_id=food.cook_id where food.food_id='$fid'");
@@ -251,7 +251,7 @@ ul li a:hover{text-decoration:none;}
         </div>
 		 <div class="col-sm-2"><i class="fas fa-dollar-sign"></i><span style="color:green; font-size:20px;"> <?php echo $res['cost']; ?></span></div>
 		 <form method="post">
-		 <div class="col-sm-2" style="text-align:left;padding:10px; font-size:15px;"><button type="submit" name="addtocart" value="<?php echo $fid; ?>")" ><span style="color:green;" <i class="fa fa-shopping-cart" aria-hidden="true"></i></span></button></div>
+		 <div class="col-sm-2" style="text-align:left;padding:10px; font-size:15px;"><button type="submit" name="addtocart" value="<?php echo $fid; ?>") ><span style="color:green;" ><i class="fa fa-shopping-cart" aria-hidden="true"></i></span></button></div>
 		 </form>
 		 </div>
 		 

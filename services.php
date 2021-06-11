@@ -7,7 +7,7 @@ $arr=array();
 if(isset($_SESSION['cust_id']))
 {
 	 $cust_id=$_SESSION['cust_id'];
-	 $qq=mysqli_query($con,"select * from customer where cust_email='$cust_id'");
+	 $qq=mysqli_query($con,"SELECT * from customer where cust_email='$cust_id'");
 	 $qqr= mysqli_fetch_array($qq);
 }
 else
@@ -20,7 +20,7 @@ else
 
 
 
-$query=mysqli_query($con,"select  cook.cust_name,cook.cook_id,cook.cust_email,
+$query=mysqli_query($con,"SELECT  cook.cust_name,cook.cook_id,cook.cust_email,
 cook.fld_mob,cook.fld_address,cook.pro_image,food.food_id,food.foodname,food.cost,
 food.cuisines,food.paymentmode 
 from cook inner join food on cook.cook_id=food.cook_id;");
@@ -55,12 +55,12 @@ while($row=mysqli_fetch_array($query))
 	 session_destroy();
 	 header("location:index.php");
  }
- $query=mysqli_query($con,"select food.foodname,food.cook_id,food.cost,food.cuisines,food.fldimage,cart.cart_id,cart.product_id,cart.customer_id from food inner  join cart on food.food_id=cart.product_id where cart.customer_id='$cust_id'");
+ $query=mysqli_query($con,"SELECT food.foodname,food.cook_id,food.cost,food.cuisines,food.fldimage,cart.cart_id,cart.product_id,cart.customer_id from food inner  join cart on food.food_id=cart.product_id where cart.customer_id='$cust_id'");
   $re=mysqli_num_rows($query);
 ?>
 <html>
   <head>
-     <title>Home</title>
+     <title>Services</title>
 	 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -149,9 +149,7 @@ ul li a:hover{text-decoration:none;}
 	
       <ul class="navbar-nav ml-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="index.php">Home
-                
-              </a>
+          <a class="nav-link" href="index.php">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="aboutus.php">About</a>

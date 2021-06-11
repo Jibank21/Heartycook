@@ -4,8 +4,7 @@ $output = '';
 if(isset($_POST["query"]))
 {
 	$search = mysqli_real_escape_string($connect, $_POST["query"]);
-	$query = "
-	SELECT * FROM food 
+	$query = "SELECT * FROM food 
 	WHERE foodname LIKE '%".$search."%'
 	OR Cuisines LIKE '%".$search."%' 
 	
@@ -13,8 +12,7 @@ if(isset($_POST["query"]))
 }
 else
 {
-	$query = "
-	SELECT * FROM food ";
+	$query = "SELECT * FROM food ";
 }
 $result = mysqli_query($connect, $query);
 if(mysqli_num_rows($result) > 0)

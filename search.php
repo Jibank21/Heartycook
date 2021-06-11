@@ -5,7 +5,7 @@ session_start();
 if(isset($_SESSION['cust_id']))
 {
 	 $cust_id=$_SESSION['cust_id'];
-	 $qq=mysqli_query($con,"select * from customer where cust_email='$cust_id'");
+	 $qq=mysqli_query($con,"SELECT * from customer where cust_email='$cust_id'");
 	 $qqr= mysqli_fetch_array($qq);
 }
 else
@@ -22,7 +22,7 @@ else
 }
 if(isset($login))
  {
-	 header("location:form/index.php");
+	 header("location:customer/index.php");
  }
  if(isset($logout))
  {
@@ -30,10 +30,10 @@ if(isset($login))
 	 header("location:index.php");
  }
 
-$query=mysqli_query($con,"select * from cook where cook_id='$vid'");
+$query=mysqli_query($con,"SELECT * from cook where cook_id='$vid'");
 $row=mysqli_fetch_array($query);
 echo $row['cust_name'];
-$query=mysqli_query($con,"select food.foodname,food.cook_id,food.cost,food.cuisines,food.fldimage,cart.cart_id,cart.product_id,cart.customer_id from food inner  join cart on food.food_id=cart.product_id where cart.customer_id='$cust_id'");
+$query=mysqli_query($con,"SELECT food.foodname,food.cook_id,food.cost,food.cuisines,food.fldimage,cart.cart_id,cart.product_id,cart.customer_id from food inner  join cart on food.food_id=cart.product_id where cart.customer_id='$cust_id'");
   $re=mysqli_num_rows($query);
 ?>
 <html>
@@ -66,7 +66,7 @@ $query=mysqli_query($con,"select food.foodname,food.cook_id,food.cost,food.cuisi
 	                           {
 		                        $.ajax({
 			                    url:"fetch2.php",
-			                    method:"post",
+			                    method:"POST",
 			                    data:{query:query},
 			                    success:function(data)
 			                                 {
@@ -99,7 +99,7 @@ $query=mysqli_query($con,"select food.foodname,food.cook_id,food.cost,food.cuisi
 	                           {
 		                        $.ajax({
 			                    url:"fetch.php",
-			                    method:"post",
+			                    method:"POST",
 			                    data:{query:query},
 			                    success:function(data)
 			                                 {
@@ -147,7 +147,7 @@ ul li a:hover{text-decoration:none;}
 
 <nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top">
   
-    <a class="navbar-brand" href="index.php"><span style="color:green;font-family: 'Permanent Marker', cursive;">Food Hunt</span></a>
+    <a class="navbar-brand" href="index.php"><span style="color:green;font-family: 'Permanent Marker', cursive;"><b>Hearty Cook</b></span></a>
     <?php
 	if(!empty($cust_id))
 	{
@@ -221,7 +221,8 @@ ul li a:hover{text-decoration:none;}
    <div class="col-sm-1"></div>
    <div class="col-sm-10" >
    <h3 style="color:#01C699;text-transform:uppercase;"><?php echo $row['cust_name']; ?></h3><br><br>
-   <span style="color:#A5A5A5;font-size:25px;text-transform:uppercase;"><i class="fas fa-home"></i></span>&nbsp;&nbsp;<span style="font-family: 'Tangerine', serif; font-weight:bold;font-size:25px; color:#ED2553;"><?php echo $row['fld_address']?></span><br><br>
+
+   <span style="color:#A5A5A5;font-size:25px;text-transform:uppercase;"><i class="fas fa-home"></i></span>&nbsp;&nbsp;<span style="font-family: 'Tangerine', serif; font-weight:bold;font-size:25px; color:#ED2553;"><a href="https://www.google.com/maps/place/<?php echo $row['fld_address']?>"><?php echo $row['fld_address']?></a></span><br><br>
    <span style="color:#A5A5A5;font-size:25px;"><i class="fas fa-phone"></i></span>&nbsp;&nbsp;<span style=" font-size:25px; color:#ED2553;"><?php echo $row['fld_phone']?></span><br><br>
    <span style="color:#A5A5A5;font-size:25px;"><i class="fa fa-mobile" aria-hidden="true"></i></span>&nbsp;&nbsp;<span style=" font-size:25px; color:#ED2553;"><?php echo $row['fld_mob']?></span><br><br>
    <span style="color:#A5A5A5;font-size:25px;"><i class="fas fa-at"></i></span>&nbsp;&nbsp;<span style=" font-size:25px; color:#ED2553;"><?php echo $row['cust_email']?></span><br><br>

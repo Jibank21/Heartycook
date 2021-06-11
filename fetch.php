@@ -4,17 +4,15 @@ $output = '';
 if(isset($_POST["query"]))
 {
 	$search = mysqli_real_escape_string($connect, $_POST["query"]);
-	$query = "
-	SELECT * FROM cook 
+	$query = "SELECT * FROM cook 
 	WHERE cust_name LIKE '%".$search."%'
 	OR fld_address LIKE '%".$search."%' 
-	
+	OR cook_id LIKE '%".$search."%'	
 	";
 }
 else
 {
-	$query = "
-	SELECT * FROM cook ";
+	$query = "SELECT * FROM cook ";
 }
 $result = mysqli_query($connect, $query);
 if(mysqli_num_rows($result) > 0)

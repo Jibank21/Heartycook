@@ -10,7 +10,7 @@ $msg="";
 
 	if(isset($register))
      {
-	$sql=mysqli_query($con,"select * from cook where cust_email='$email'");
+	$sql=mysqli_query($con,"SELECT * from cook where cust_email='$email'");
     if(mysqli_num_rows($sql))
 	{
 	  $email_error="This Email Id is laready registered with us";
@@ -18,7 +18,7 @@ $msg="";
 	else
 	{
 	$image=$_FILES['image']['name'];
-	$sql=mysqli_query($con,"insert into cook 
+	$sql=mysqli_query($con,"INSERT into cook 
 	(cust_name	,cust_email,fld_password,fld_mob,fld_phone,fld_address,pro_image,email_varification)
        	values('$name','$email','$pswd','$mob','$phone','$address','$image',0)");
 	
@@ -29,7 +29,7 @@ $msg="";
 	
 	move_uploaded_file($_FILES['image']['tmp_name'],"image/cook/$email/".$_FILES['image']['name']);
 
-  $msg="we have sent a verification link to $email<br><br> Please check your inbox and click on the link to get started. If you can't find this email (which coud be due to spam filters), just request a new one here.";
+  
 	}
 	$_SESSION['id']=$email;
 	

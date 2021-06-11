@@ -7,8 +7,8 @@
 					  <div class="col-sm-6" style=" border-right:1px solid black;">
 					    <ul>
                           <li><h5><I>Delivery Deriver</I></h5></li>
-						  <li><a href="Delivery_driver.php">Login</a></li>
-						  <li><a href="Delivery_register.php"> Register</a></li>
+						  <li><a href="delivery_login.php">Login</a></li>
+						  <li><a href="delivery_register.php"> Register</a></li>
 						  
 						</ul>
 					  </div>

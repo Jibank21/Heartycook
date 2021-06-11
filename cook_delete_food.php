@@ -4,7 +4,7 @@ include('connection.php');
  $idd=$_GET['food_id'];
 if(isset($_SESSION['id']))
 {
-$q=mysqli_query($con,"select cook.cust_name,food.fldimage, cook.cook_id, cook.cust_email from cook inner join food on cook.cook_id=food.cook_id where food.food_id='$idd'");
+$q=mysqli_query($con,"SELECT cook.cust_name,food.fldimage, cook.cook_id, cook.cust_email from cook inner join food on cook.cook_id=food.cook_id where food.food_id='$idd'");
 $res=mysqli_fetch_assoc($q);
 $e=$res['cust_email'];
 $img=$res['fldimage'];
@@ -13,7 +13,7 @@ unlink("image/cook/$e/foodimages/$img");
 
 //rmdir("image/$e");
 
-if(mysqli_query($con,"delete  from  food where food_id='$idd' "))
+if(mysqli_query($con,"DELETE  from  food where food_id='$idd' "))
 {
 	
 	

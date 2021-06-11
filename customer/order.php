@@ -1,6 +1,7 @@
 <?php
 session_start();
 include("../connection.php");
+
 echo $cust_id=$_GET['cust_id'];
 
 $query=mysqli_query($con,"SELECT food.food_id,food.foodname,food.cook_id,food.cost,food.cuisines,food.fldimage,cart.cart_id,cart.product_id,cart.customer_id from food inner  join cart on food.food_id=cart.product_id where cart.customer_id='$cust_id'");

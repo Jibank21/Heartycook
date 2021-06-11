@@ -5,7 +5,7 @@ extract($_REQUEST);
 if(isset($_SESSION['id']))
 {
  $id=$_SESSION['id'];
- $vq=mysqli_query($con,"select * from cook where cust_email='$id'");
+ $vq=mysqli_query($con,"SELECT * from cook where cust_email='$id'");
  $vr=mysqli_fetch_array($vq);
  $vrid=$vr['cook_id'];
 }
@@ -16,7 +16,7 @@ if(!isset($_SESSION['id']))
 }
 else
 {
-$query=mysqli_query($con,"select * from cook   where cust_email='$id'");
+$query=mysqli_query($con,"SELECT * from cook   where cust_email='$id'");
 if(mysqli_num_rows($query))
 {   if(!file_exists("../image/cook/".$id."/foodimages"))
 	{
@@ -42,7 +42,7 @@ if(isset($add))
     if(!empty($chk)) 
 	{
 	$paymentmode=implode(",",$chk);
-	if(mysqli_query($con,"insert into food(cook_id,foodname,cost,cuisines,paymentmode,fldimage) values
+	if(mysqli_query($con,"INSERT into food(cook_id,foodname,cost,cuisines,paymentmode,fldimage) values
 	
 	('$v_id','$food_name','$cost','$cuisines','$paymentmode','$img_name')"))
 	{
@@ -74,7 +74,7 @@ if(isset($upd_account))
 					//echo $fn;
 					//echo $emm;
 					//echo $add;
-					if(mysqlI_query($con,"update cook set cust_name='$fn',cust_email='$emm',fld_address='$add',fld_mob='$mob',fld_password='$pwsd' where cust_email='$id'"))
+					if(mysqlI_query($con,"UPDATE cook set cust_name='$fn',cust_email='$emm',fld_address='$add',fld_mob='$mob',fld_password='$pwsd' where cust_email='$id'"))
 				   {
 						 header("location:infoUpdate.php");
 					}
@@ -83,12 +83,12 @@ if(isset($upd_account))
 			  {
 				  if(isset($_SESSION['id']))
 				  {
-				  $log_img=mysqli_query($con,"select * from cook where cust_email='$id'");
+				  $log_img=mysqli_query($con,"SELECT * from cook where cust_email='$id'");
                   $log_img_row=mysqli_fetch_array($log_img);
 				  $old_logo=$log_img_row['pro_image'];
 				  $new_img_name=$_FILES['logo_pic']['name'];
 				  
-				  if(mysqli_query($con,"update cook set pro_image='$new_img_name' where cust_email='$id'"))
+				  if(mysqli_query($con,"UPDATE cook set pro_image='$new_img_name' where cust_email='$id'"))
 				  {
 					  unlink("image/cook/$id/$old_logo");
 					  move_uploaded_file($_FILES['logo_pic']['tmp_name'],"image/cook/$id/".$_FILES['logo_pic']['name']);
@@ -108,7 +108,7 @@ if(isset($upd_account))
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Food details</title>
+  <title>Hearty cook</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -122,7 +122,7 @@ if(isset($upd_account))
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 	 <style>
-		
+		ul li {list-style: none;}
 		ul li a {color:white;padding:40px; }
 		ul li a:hover {color:white;}
 	 </style>
@@ -148,9 +148,7 @@ if(isset($upd_account))
 	
       <ul class="navbar-nav ml-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="index.php">Home
-                
-              </a>
+          <a class="nav-link" href="index.php">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="aboutus.php">About</a>
@@ -225,11 +223,11 @@ if(isset($upd_account))
 			 <th>food name</th>
 			 <th>food Price</th>
 			 <th>food cuisines </th>
-			 <th>Payment Mode  </th>
 			 <th>Delete Item   </th>
+			 <!-- <th>Payment method</th> -->
 			 <th>Update item Details </th>
 			   <?php
-					  if($query=mysqli_query($con,"select cook.cook_id,cook.cust_email,food.food_id,food.foodname,food.cost,food.paymentmode,food.cuisines,food.fldimage,cook.cust_name from cook inner join food on cook.cook_id=food.cook_id where cook.cust_email='$id'"))
+					  if($query=mysqli_query($con,"SELECT cook.cook_id,cook.cust_email,food.food_id,food.foodname,food.cost,food.paymentmode,food.cuisines,food.fldimage,cook.cust_name from cook inner join food on cook.cook_id=food.cook_id where cook.cust_email='$id'"))
 					  {
 						  if(mysqli_num_rows($query))
 						  {
@@ -243,7 +241,7 @@ if(isset($upd_account))
 				<td style="width:150px;"><?php  echo $row['foodname']."<br>";?></td>
 				<td align="center" style="width:150px;"><?php  echo $row['cost']."<br>";?></td>
 				<td  align="center" style="width:150px;"><?php  echo $row['cuisines']."<br>";?></td>
-				<td align="center" style="width:150px;"><?php  echo $row['paymentmode']."<br>";?></td>
+				<!-- <td align="center" style="width:150px;"><?php  // echo $row['paymentmode']."<br>";?></td> -->
 				
 				<td align="center" style="width:150px;">
 				
@@ -285,7 +283,7 @@ if(isset($upd_account))
 			<!--tab 2 starts-->
             <div class="tab-pane fade" id="manageaccount" role="tabpanel" aria-labelledby="profile-tab">
 			         <!--add Product-->
-                        <form action="" method="post" enctype="multipart/form-data">
+                        <form action="" method="POST" enctype="multipart/form-data">
                                      <div class="form-group"><!--food_name-->
                                      <label for="food_name">Food Name:</label>
                                             <input type="text" class="form-control" id="food_name" value="<?php if(isset($food_name)) { echo $food_name;}?>" placeholder="Enter Food Name" name="food_name" required>
@@ -294,7 +292,7 @@ if(isset($upd_account))
 									 
                                      <div class="form-group"><!--cost-->
                                             <label for="cost">Cost :</label>
-                                            <input type="number" class="form-control" id="cost"  value="<?php if(isset($cost)) { echo $cost;}?>" placeholder="10000" name="cost" required>
+                                            <input type="number" class="form-control" id="cost"  value="<?php if(isset($cost)) { echo $cost;}?>" placeholder="Cost of the food " name="cost" required>
                                      </div>
 									 
 									 
@@ -303,12 +301,12 @@ if(isset($upd_account))
                                             <input type="text" class="form-control" id="cuisines" value="<?php if(isset($cuisines)) { echo $cuisines;}?>" placeholder="Enter Cuisines" name="cuisines" required>
                                     </div>
 							        
-							        <div class="form-group"><!--payment_mode-->
+							        <!-- <div class="form-group">
                                          <input type="checkbox" name="chk[]" value="COD"/>Cash On Delivery
 			                             <input type="checkbox" name="chk[]" value="Online Payment"/>Online Payment
 								         <br>
-								        <span style="color:red;"><?php if(isset($paymessage)){ echo $paymessage;}?></span>
-			      			        </div>
+								        <span style="color:red;"><?php // if(isset($paymessage)){ echo $paymessage;}?></span>
+			      			        </div> -->
 							   
 	                                <div class="form-group">
                                          <input type="file" accept="image/*" name="food_pic" required/>Food Snaps 
@@ -325,9 +323,9 @@ if(isset($upd_account))
 			
 			 <!--tab 3-- starts-->
 			 <div class="tab-pane fade" id="accountsettings" role="tabpanel" aria-labelledby="accountsettings-tab">
-			    <form method="post" enctype="multipart/form-data">
+			    <form method="POST" enctype="multipart/form-data">
 				<?php
-			    $upd_info=mysqli_query($con,"select * from cook where cust_email='$id'");
+			    $upd_info=mysqli_query($con,"SELECT * from cook where cust_email='$id'");
 				$upd_info_row=mysqlI_fetch_array($upd_info);
 				 $nm=$upd_info_row['cust_name'];
 				 $emm=$upd_info_row['cust_email'];
@@ -388,12 +386,12 @@ if(isset($upd_account))
 				if(mysqli_num_rows($orderquery))
 				{
 					while($orderrow=mysqli_fetch_array($orderquery))
-					{
+					{					
 						$stat=$orderrow['fldstatus'];
 						?>
 						<tr>
 						<td><?php echo $orderrow['order_id']; ?></td>
-						<td><?php echo $orderrow['cust_email_id']; ?></td>
+						<td><a href="customerdetails.php?cust_email_id=<?php echo $orderrow['cust_email_id']; ?>"><?php echo $orderrow['cust_email_id']; ?></a></td>
 						<td><?php echo $orderrow['food_id']; ?></td>
 						<?php
 			   if($stat=="cancelled" || $stat=="Out Of Stock")
@@ -410,7 +408,7 @@ if(isset($upd_account))
 			   <?php
 			   }
 			   ?>
-						<form method="post">
+						<form method="POST">
 						<td><a href="changestatus.php?order_id=<?php echo $orderrow['order_id']; ?>"><button type="button" name="changestatus">Update Status</button></a></td>
 						</form>
 						<tr>

@@ -20,7 +20,7 @@ else
 }
 if(isset($login))
 {
-	$query=mysqli_query($con,"select * from customer where cust_email='$email' && password='$password'");
+	$query=mysqli_query($con,"SELECT * from customer where cust_email='$email' && password='$password'");
     if($row=mysqli_fetch_array($query))
 	{
 		$customer_email =$row['cust_email'];
@@ -49,7 +49,7 @@ if(isset($login))
 
 if(isset($register))
 {
-	$query=mysqli_query($con,"select * from customer where cust_email='$email'");
+	$query=mysqli_query($con,"SELECT * from customer where cust_email='$email'");
 	$row=mysqli_num_rows($query);
 	if($row)
 	{
@@ -58,7 +58,7 @@ if(isset($register))
 	}
 	else
 	{
-		if(mysqli_query($con,"insert into customer (cust_name,cust_email,password,cust_phone) values('$name','$email','$password','$mobile')"))
+		if(mysqli_query($con,"INSERT into customer (cust_name,cust_email,password,cust_phone) values('$name','$email','$password','$mobile')"))
     {
 		$_SESSION['cust_id']=$email;
 		if(!empty($customer_email && $product_id))
@@ -189,7 +189,7 @@ if(isset($register))
 				   
 				   <div class="form-group">
                       <label for="mobile">Mobile</label>
-                      <input type="tel" id="mobile" class="form-control" name="mobile" pattern="[6-9]{1}[0-9]{2}[0-9]{3}[0-9]{4}" placeholder="" required>
+                      <input type="tel" id="mobile" class="form-control" name="mobile"  placeholder="" required>
                     </div>
  
                   <button type="submit" name="register" style="background:#ED2553; border:1px solid #ED2553;" class="btn btn-primary">Create New Account</button>
