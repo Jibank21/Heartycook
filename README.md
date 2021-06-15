@@ -17,8 +17,8 @@ email address: customer1@gmail.com
 password: customer1 
 
 delivery driver:
-eamil: jiban@gmail.com
-password:jiban1
+eamil: driver@gmail.com
+password:driver1
 
 
 admin: 
