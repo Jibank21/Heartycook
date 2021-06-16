@@ -130,7 +130,8 @@ CREATE TABLE `delivery_person` (
 --  Dumping data for table `customer`
 
 INSERT INTO `delivery_person` (`id`, `name`, `email`, `password`,`phone`,`address`) VALUES
-(1, 'jiban', 'jiban','jiban@gmail.com','jiban1' 7503515382, 'cca
+(1,'jiban','jiban@gmail.com','jiban1' 7503515382, 'campsie),
+ (2,'jiban','driver@gmail.com','driver1' 7503515382, 'campsie);
 -- --------------------------------------------------------
 
 --
